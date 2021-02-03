@@ -80,6 +80,7 @@ a:hover {
     border-left: 1px solid #F9FBFB;
     border-right: 1px solid #F9FBFB;
     padding: 25px 20px;
+    text-decoration: none;
 }
 .main__tabs_item:hover {
     background: #D9EFEC;
@@ -322,10 +323,10 @@ a:hover {
     color: #34ACA7;
     text-decoration: none;
 }
-.footer__info-item:nth-child(1) {
+.footer__info-item:first-child {
     padding-left: 0;
 }
-.footer__info-item:nth-child(3) {
+.footer__info-item:last-child {
     border-right: none;
     padding-right: 0;
 }
