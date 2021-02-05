@@ -24,6 +24,7 @@ a:hover {
 }
 .wrapper {
     width: 1088px;
+    height: 100%;
     margin: 50px auto;
     display: flex;
     flex-wrap: wrap;
@@ -33,12 +34,12 @@ a:hover {
 /* main styles start */
 .main {
     width: 896px;
-    height: 996px;
+    height: 100%;
     margin-bottom: 25px;
 }
 .main__banner {
     width: 100%;
-    height: 445px;
+    height: 100%;
     position: relative;
 }
 .main__banner_title,
@@ -51,30 +52,35 @@ a:hover {
 }
 .main__banner_title {
     top: 287px;
-    width: 272px;
-    height: 47px;
+    min-width: 272px;
+    min-height: 47px;
     font-size: 22px;
     line-height: 47px;
     letter-spacing: 0.01em;
     color: #000000;
     background-color: #ffffff;
+    padding-right: 10px;
 }
 .main__banner_subtitle {
     top: 334px;
-    width: 487px;
-    height: 42px;
+    min-width: 487px;
+    min-height: 42px;
     font-size: 14px;
     line-height: 47px;
     color: #FFFFFF;
     background-color: #000000;
+    padding-right: 10px;
 }
 .main__tabs_items {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 30px;
 }
 .main__tabs_item {
     width: 25%;
-    height: 85px;
+    height: 100%;
     background: #EFF8F7;
     cursor: pointer;
     border-left: 1px solid #F9FBFB;
@@ -102,7 +108,7 @@ a:hover {
 }
 .main__subscribe_block {
     width: 100%;
-    height: 51px;
+    height: 100%;
     border-top: 1px dashed #E5E5E5;
     border-bottom: 1px dashed #E5E5E5;
     padding: 10px 20px;
@@ -163,15 +169,17 @@ a:hover {
 
 .main__atricles-items {
     width: 100%;
-    height: 210px;
+    height: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 .main__atricles-item {
     width: 207px;
-    height: 356px;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 .main__atricles-image-box {
     width: 100%;
@@ -225,22 +233,30 @@ a:hover {
     height: 120px;
     margin-bottom: 5px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .aside__nav-item {
+    width: 100%;
     margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+.aside__nav-icon {
+    min-width: 30px;
+    height: 100%;
+    margin-right: 5px;
 }
 .aside__nav-item a {
+    display: block;
+    width: 100%;
     font-style: italic;
     font-weight: normal;
     font-size: 14px;
     line-height: 14px;
     color: #34ACA7;
     text-decoration: none;
-}
-.aside__nav-icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
 }
 .aside__tweet-title,
 .aside__friends-title {
