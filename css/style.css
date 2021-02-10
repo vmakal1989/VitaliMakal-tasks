@@ -41,35 +41,40 @@ a:hover {
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
-.main__banner_title,
-.main__banner_subtitle {
+.main__banner_text-container {
+    max-width: 100%;
+    max-height: 100%;
     position: absolute;
     left: 0;
     font-style: italic;
     font-weight: normal;
-    padding-left: 20px;
+    top: 285px;
 }
+
 .main__banner_title {
-    top: 287px;
     min-width: 272px;
     min-height: 47px;
+    max-height: 100%;
     font-size: 22px;
     line-height: 47px;
     letter-spacing: 0.01em;
     color: #000000;
     background-color: #ffffff;
     padding-right: 10px;
+    padding-left: 20px;
 }
 .main__banner_subtitle {
-    top: 334px;
     min-width: 487px;
     min-height: 42px;
+    max-height: 100%;
     font-size: 14px;
     line-height: 47px;
     color: #FFFFFF;
     background-color: #000000;
     padding-right: 10px;
+    padding-left: 20px;
 }
 .main__tabs_items {
     width: 100%;
@@ -239,17 +244,9 @@ a:hover {
 .aside__nav-item {
     width: 100%;
     margin-bottom: 35px;
-    display: flex;
-    align-items: center;
     padding: 0;
 }
-.aside__nav-icon {
-    min-width: 30px;
-    height: 100%;
-    margin-right: 5px;
-}
-.aside__nav-item a {
-    display: block;
+.aside__nav-link {
     width: 100%;
     font-style: italic;
     font-weight: normal;
@@ -257,7 +254,35 @@ a:hover {
     line-height: 14px;
     color: #34ACA7;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
+.aside__nav-icon {
+    min-width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+.aside__nav-text {
+    width: 100%;
+    height: 100%;
+    word-wrap: break-word;
+}
+.aside__nav-icon-tastemakers {
+ background-image: url("../images/svg/tastemakers.svg");
+}
+.aside__nav-icon-blog {
+    background-image: url("../images/svg/blog.svg");
+}
+.aside__nav-icon-list {
+    background-image: url("../images/svg/list.svg");
+}
+.aside__nav-icon-contribure {
+    background-image: url("../images/svg/contribure.svg");
+}
+.aside__nav-icon-about {
+    background-image: url("../images/svg/about.svg");
+}
+
 .aside__tweet-title,
 .aside__friends-title {
     font-family: Verdana;
