@@ -7,44 +7,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="wrapper">
         <div class="aside">
-            <div class="aside__logo">
-                <img src="images/icon-logo.png" />
-            </div>
+            <div class="aside__logo"></div>
             <div class="aside__nav">
                 <ul class="aside__nav-items">
                     <li class="aside__nav-item">
                         <a href="#" class="aside__nav-link">
-                            <div class="aside__nav-icon aside__nav-icon-tastemakers"></div>
+                            <div class="aside__nav-icon icon-tastemakers"></div>
                             <div class="aside__nav-text">Tastemakers</div>
                         </a>
                     </li>
                     <li class="aside__nav-item">
                         <a href="#" class="aside__nav-link">
-                            <div class="aside__nav-icon aside__nav-icon-blog"></div>
+                            <div class="aside__nav-icon icon-blog"></div>
                             <div class="aside__nav-text">Blog</div>
                         </a>
                     </li>
                     <li class="aside__nav-item">
                         <a href="#" class="aside__nav-link">
-                            <div class="aside__nav-icon aside__nav-icon-list"></div>
+                            <div class="aside__nav-icon icon-list"></div>
                             <div class="aside__nav-text">The A-list</div>
                         </a>
                     </li>
-                    </li>
                     <li class="aside__nav-item">
                         <a href="#" class="aside__nav-link">
-                            <div class="aside__nav-icon aside__nav-icon-contribure"></div>
+                            <div class="aside__nav-icon icon-contribure"></div>
                             <div class="aside__nav-text">Contribure</div>
                         </a>
                     </li>
                     <li class="aside__nav-item">
                         <a href="#" class="aside__nav-link">
-                            <div class="aside__nav-icon aside__nav-icon-about"></div>
+                            <div class="aside__nav-icon icon-about"></div>
                             <div class="aside__nav-text">About</div>
                         </a>
                     </li>
@@ -78,124 +76,145 @@
             </div>
         </div>
         <div class="main">
-            <figure class="main__banner">
-                <img src="images/baner.png" alt="Elephant at sunset">
-                <div class="main__banner_text-container">
-                    <div class="main__banner_title">
-                        <p>Share your Foor Sence</p></div>
-                    <div class="main__banner_subtitle">
-                        <p>Submit yout favorite recipes, become a contributor, or get interviewed.</p></div>
+            <figure class="banner">
+                <div class="banner__text">
+                    <div class="banner__title">
+                        <p>Share your Foor Sence</p>
+                    </div>
+                    <div class="banner__subtitle">
+                        <p>Submit your favorite recipes, become a contributor, or get interviewed.</p>
+                    </div>
                 </div>
             </figure>
-            <div class="main__tabs_items">
-                <a href="#" class="main__tabs_item">
-                    <p class="main__tabs_item_title">Tastemakers</p>
-                    <p class="main__tabs_item_subtitle">Feast your eyes & get reciepes!</p>
-                </a>
-                <a href="#" class="main__tabs_item">
-                    <p class="main__tabs_item_title">Blog</p>
-                    <p class="main__tabs_item_subtitle">News, how-tos, stories, and more</p>
-                </a>
-                <a href="#" class="main__tabs_item">
-                    <p class="main__tabs_item_title">The A-List</p>
-                    <p class="main__tabs_item_subtitle">Handpicked, absolute favorites</p>
-                </a>
-                <a href="#" class="main__tabs_item">
-                    <p class="main__tabs_item_title">Contribute</p>
-                    <p class="main__tabs_item_subtitle">We want to hear from you!</p>
-                </a>
-            </div>
-            <div class="main__subscribe_block">
-                <div class="main__subscribe_text">
-                    Sign up for out newsletter to receive a handpicked selection of the best stories, recipes, and news,
-                    delivered weekly to your inbox.
-                </div>
-                <div class="main__subscribe_field-block">
-                    <input class="main__subscribe_field" type="text" placeholder="Email"/>
-                </div>
-                <div class="main__subscribe_button-block">
-                    <button class="main__subscribe_button">Subscribe</button>
+            <div class="tabs">
+                <div class="tabs__items">
+                    <a href="#" class="tabs__item">
+                        <p class="tabs__title">Tastemakers</p>
+                        <p class="tabs__subtitle">Feast your eyes & get reciepes!</p>
+                    </a>
+                    <a href="#" class="tabs__item">
+                        <p class="tabs__title">Blog</p>
+                        <p class="tabs__subtitle">News, how-tos, stories, and more</p>
+                    </a>
+                    <a href="#" class="tabs__item">
+                        <p class="tabs__title">The A-List</p>
+                        <p class="tabs__subtitle">Handpicked, absolute favorites</p>
+                    </a>
+                    <a href="#" class="tabs__item">
+                        <p class="tabs__title">Contribute</p>
+                        <p class="tabs__subtitle">We want to hear from you!</p>
+                    </a>
                 </div>
             </div>
-            <div class="main__atricles-items">
-                <div class="main__atricles-item">
-                    <div class="main__atricles-image-box">
-                        <img src="images/image-1.png" alt="">
-                    </div>
-                    <div class="main__atricles-title">
-                        <p>2012’s Best Summer Cookbooks</p></div>
-                    <div class="main__atricles-description">
-                        <p>With the best of the season coming from “orchards,
-                            farms and gardens,” NPR has put together an impressive collection of 10 summer cookbooks.</p>
-                    </div>
-                    <div class="main__atricles_footer">
-                        <p class="main__atricles_date">May 23, 2012 /</p>
-                        <a class="main__atricles_link" href="#">Read</a>
+            <div class="subscribe">
+                <div class="subscribe__text-container">
+                    <div class="subscribe_icon"></div>
+                    <div class="subscribe_text">
+                        Sign up for out newsletter to receive a handpicked selection of the best stories, recipes, and news,
+                        delivered weekly to your inbox.
                     </div>
                 </div>
-                <div class="main__atricles-item">
-                    <div class="main__atricles-image-box">
-                        <img src="images/image-2.png" alt="">
-                    </div>
-                    <div class="main__atricles-title">
-                        <p>How to Make Vegetable Chips</p>
-                    </div>
-                    <div class="main__atricles-description">
-                        <p>About a month ago, I ate almost an entire box of kale chips.
-                            My brother and I were visiting our cousin in Brooklyn, and before a very thoughtfully prepared vagan...</p>
-                    </div>
-                    <div class="main__atricles_footer">
-                        <p class="main__atricles_date">May 17, 2012 /</p>
-                        <a class="main__atricles_link" href="#">Read</a>
-                    </div>
+                <div class="subscribe__field">
+                    <input class="subscribe__input" type="text" placeholder="Email"/>
                 </div>
-                <div class="main__atricles-item">
-                    <div class="main__atricles-image-box">
-                        <img src="images/image-3.png" alt="">
-                    </div>
-                    <div class="main__atricles-title">
-                        <p>Join us on Pinterest!</p>
-                    </div>
-                    <div class="main__atricles-description">
-                        <p>If I could curate a cookbook for you, this would be it.</p>
-                    </div>
-                    <div class="main__atricles_footer">
-                        <p class="main__atricles_date">May 23, 2012 /</p>
-                        <a class="main__atricles_link" href="#">Read</a>
-                    </div>
+                <div class="subscribe__button-container">
+                    <button class="subscribe__button">Subscribe</button>
                 </div>
-                <div class="main__atricles-item">
-                    <div class="main__atricles-image-box">
-                        <img src="images/image-4.png" alt="">
+            </div>
+            <div class="articles">
+                <div class="articles__items">
+                    <div class="articles__item">
+                        <div class="articles__image">
+                            <img src="images/image-1.png" alt="">
+                        </div>
+                        <div class="articles__title">
+                            <p>2012’s Best Summer Cookbooks</p></div>
+                        <div class="articles__description">
+                            <p>With the best of the season coming from “orchards,
+                                farms and gardens,” NPR has put together an impressive collection of 10 summer cookbooks.</p>
+                        </div>
+                        <div class="articles__footer">
+                            <p class="articles__date">May 23, 2012 /</p>
+                            <a class="articles__link" href="#">Read</a>
+                        </div>
                     </div>
-                    <div class="main__atricles-title">
-                        <p>Recipes from a Sunday Supper</p>
+                    <div class="articles__item">
+                        <div class="articles__image">
+                            <img src="images/image-2.png" alt="">
+                        </div>
+                        <div class="articles__title">
+                            <p>How to Make Vegetable Chips</p>
+                        </div>
+                        <div class="articles__description">
+                            <p>About a month ago, I ate almost an entire box of kale chips.
+                                My brother and I were visiting our cousin in Brooklyn, and before a very thoughtfully prepared vagan...</p>
+                        </div>
+                        <div class="articles__footer">
+                            <p class="articles__date">May 17, 2012 /</p>
+                            <a class="articles__link" href="#">Read</a>
+                        </div>
                     </div>
-                    <div class="main__atricles-description">
-                        <p>I could not figure out what to do with the delectable
-                        slices of Pear Cake that I brought home from this wonderful Sunday supper - eat them slowly, a little bit at...</p>
+                    <div class="articles__item">
+                        <div class="articles__image">
+                            <img src="images/image-3.png" alt="">
+                        </div>
+                        <div class="articles__title">
+                            <p>Join us on Pinterest!</p>
+                        </div>
+                        <div class="articles__description">
+                            <p>If I could curate a cookbook for you, this would be it.</p>
+                        </div>
+                        <div class="articles__footer">
+                            <p class="articles__date">May 23, 2012 /</p>
+                            <a class="articles__link" href="#">Read</a>
+                        </div>
                     </div>
-                    <div class="main__atricles_footer">
-                        <p class="main__atricles_date">May 17, 2012 /</p>
-                        <a class="main__atricles_link" href="#">Read</a>
+                    <div class="articles__item">
+                        <div class="articles__image">
+                            <img src="images/image-4.png" alt="">
+                        </div>
+                        <div class="articles__title">
+                            <p>Recipes from a Sunday Supper</p>
+                        </div>
+                        <div class="articles__description">
+                            <p>I could not figure out what to do with the delectable
+                                slices of Pear Cake that I brought home from this wonderful Sunday supper - eat them slowly, a little bit at...</p>
+                        </div>
+                        <div class="articles__footer">
+                            <p class="articles__date">May 17, 2012 /</p>
+                            <a class="articles__link" href="#">Read</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer">
-            <div class="footer__info-block">
-                <ul class="footer__info-items">
-                    <li class="footer__info-item"><a href="#" class="footer__info-link">Privacy Policy</a></li>
-                    <li class="footer__info-item"><a href="#" class="footer__info-link">Terms of Use</a></li>
-                    <li class="footer__info-item"><a href="#" class="footer__info-link">Contact</a></li>
+            <div class="info">
+                <ul class="info__items">
+                    <li class="info__item">
+                        <a href="#" class="info__link">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li class="info__item">
+                        <a href="#" class="info__link">
+                            Terms of Use
+                        </a>
+                    </li>
+                    <li class="info__item">
+                        <a href="#" class="info__link">
+                            Contact
+                        </a>
+                    </li>
                 </ul>
-                <div class="footer__info-text">
-                    <p>&copy; 2016 Food Sense, all rights reserved.</p></div>
+                <div class="info__text">
+                    <p>&copy; 2016 Food Sense, all rights reserved.</p>
+                </div>
             </div>
-            <div class="footer__icon-block">
-                <img src="images/svg/twitter-big.svg" alt="twitter" class="footer__icon">
-                <img src="images/svg/fb.svg" alt="fb" class="footer__icon">
-                <img src="images/svg/rss.svg" alt="rss" class="footer__icon">
+            <div class="icon">
+                <div  class="icon__item twitter"></div>
+                <div  class="icon__item fb"></div>
+                <div  class="icon__item rss"></div>
             </div>
         </div>
     </div>
