@@ -1,0 +1,21 @@
+@import "../helpers/media_mixin.scss";
+
+body {
+  .wrapper {
+    @include _1176 {
+      width: 896px;
+    }
+    @include _992 {
+      width: 716px;
+      display: block;
+    }
+    @include _768 {
+      width: 100%;
+      padding: 0 35px;
+    }
+    @include _480 {
+      width: 100%;
+      padding: 0;
+    }
+  }
+}
