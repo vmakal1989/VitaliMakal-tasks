@@ -1,4 +1,5 @@
 @import "../helpers/media_mixin.scss";
+@import '../helpers/mixins';
 
 .main {
   @include _1176 {
@@ -9,8 +10,7 @@
         padding: 10px;
       }
       &__title {
-        font-size: 14px;
-        line-height: 14px;
+        @include text_params(14px, normal, normal,14px);
       }
       &__subtitle {
         display: none;

@@ -1,4 +1,5 @@
 @import '../helpers/variables';
+@import '../helpers/mixins';
 
 .aside {
     width: 140px;
@@ -18,10 +19,7 @@
     }
     &__nav-link {
         width: 100%;
-        font-style: italic;
-        font-weight: normal;
-        font-size: $common_font_size;
-        line-height: 14px;
+        @include text_params($common_font_size, italic, normal,14px);
         color: $link_color;
         text-decoration: none;
         display: flex;
@@ -45,10 +43,7 @@
     &__tweet-title,
     &__friends-title {
         font-family: Verdana;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 12px;
+        @include text_params(12px, normal, normal, 12px);
         text-transform: uppercase;
         color: $text_color;
         padding: 5px 0;
@@ -62,10 +57,7 @@
         background: #ffffff;
         border: 1px solid #E5E5E5;
         border-radius: 5px;
-        font-style: italic;
-        font-weight: normal;
-        font-size: 10px;
-        line-height: 12px;
+        @include text_params(10px, italic, normal, 12px);
         color: $link_color;
         text-align: left;
         margin-bottom: 10px;
@@ -86,10 +78,7 @@
     }
     &__friends-text {
         margin-bottom: 10px;
-        font-style: italic;
-        font-weight: normal;
-        font-size: 10px;
-        line-height: 19px;
+        @include text_params(10px, italic, normal, 19px);
         color: $text_color;
     }
 }
