@@ -1,0 +1,7 @@
+@import "../helpers/media_mixin.scss";
+
+.footer {
+  @include _1176 {
+    padding-bottom: 15px;
+  }
+}

@@ -1,0 +1,64 @@
+@import "../helpers/media_mixin.scss";
+
+.aside {
+  @include  _992 {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 20px 5px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    &__logo {
+      width: 120px;
+      margin: 0;
+    }
+    &__nav-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    &__nav-item {
+      min-width: 100px;
+      margin: 0;
+      text-align: center;
+    }
+    &__nav-link {
+      flex-wrap: wrap;
+    }
+    &__nav-icon,
+    &__nav-text {
+      min-width: 100%;
+      margin: 0;
+    }
+    &__nav-icon {
+      margin-bottom: 12px;
+    }
+    &__tweet,
+    &__friends {
+      display: none;
+    }
+  }
+  @include  _768 {
+    &__nav-icon {
+      display: none;
+    }
+    &__nav-item {
+      min-width: 0;
+      margin: 5px .5px;
+    }
+  }
+  @include  _480 {
+    display: flex;
+    flex-wrap: wrap;
+    &__nav {
+      width: 100%;
+      order: -1;
+      margin-bottom: 35px;
+    }
+    &__logo {
+      width: 100%;
+    }
+  }
+}

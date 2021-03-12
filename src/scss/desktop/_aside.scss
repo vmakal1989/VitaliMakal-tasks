@@ -1,0 +1,84 @@
+@import '../helpers/variables';
+@import '../helpers/mixins';
+
+.aside {
+    width: 140px;
+    padding: 0 5px;
+    &__logo {
+        min-width: 120px;
+        min-height: 120px;
+        margin-bottom: 5px;
+        background: url("../../images/icon-logo.png") no-repeat center;
+    }
+    &__nav {
+        width: 100%;
+    }
+    &__nav-item {
+        margin-bottom: 35px;
+        padding: 0;
+    }
+    &__nav-link {
+        width: 100%;
+        @include text_params($common_font_size, italic, normal,14px);
+        color: $link_color;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+    &__nav-icon {
+        min-width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+    &__nav-text {
+        width: 100%;
+        height: 100%;
+        word-wrap: break-word;
+    }
+    @each $item in tastemakers, blog, blog, list, contribure, about {
+        .#{$item} {
+            background: url("../../images/svg/#{$item}.svg") no-repeat center;
+        }
+    }
+    &__tweet-title,
+    &__friends-title {
+        font-family: Verdana;
+        @include text_params(12px, normal, normal, 12px);
+        text-transform: uppercase;
+        color: $text_color;
+        padding: 5px 0;
+        border-bottom: 1px dashed #E5E5E5;
+        margin-bottom: 10px;
+    }
+    &__tweet-button,
+    &__friends-button {
+        width: 100%;
+        height: 30px;
+        background: #ffffff;
+        border: 1px solid #E5E5E5;
+        border-radius: 5px;
+        @include text_params(10px, italic, normal, 12px);
+        color: $link_color;
+        text-align: left;
+        margin-bottom: 10px;
+        &:hover {
+            opacity: .8;
+        }
+        &:active {
+            transform: scale(.98);
+        }
+    }
+    &__tweet-icon,
+    &__friends-icon {
+        width: 16px;
+        height: 16px;
+    }
+    &__friends-title {
+        margin-bottom: 5px;
+    }
+    &__friends-text {
+        margin-bottom: 10px;
+        @include text_params(10px, italic, normal, 19px);
+        color: $text_color;
+    }
+}
