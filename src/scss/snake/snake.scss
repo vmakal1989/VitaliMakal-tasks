@@ -1,0 +1,56 @@
+.game__snake {
+  position: relative;
+  .canvas {
+    background-color: #fafafa;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    border-radius: 1%;
+    overflow: hidden;
+  }
+  .wall {
+    background-color: #ff6d00;
+  }
+  .snake-body {
+    box-sizing: border-box;
+    background-color: #8d6e63;
+    border: 1px solid #000000;
+  }
+  .fruit {
+    background-color: #76ff03;
+    border-radius: 50%;
+  }
+  .snake-head {
+    background-color: #222222;
+    border-radius: 3px;
+  }
+  .footer {
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    &__btn {
+      background-color: burlywood;
+    }
+    &__score {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  .inform-window {
+    position: absolute;
+    top: 50px;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width: 200px;
+    padding: 20px 100px;
+    box-shadow: 0 0 7px 0 #000000;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #fff;
+    display: none;
+  }
+}
