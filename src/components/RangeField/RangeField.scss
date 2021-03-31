@@ -1,0 +1,56 @@
+.range-field__label {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.range-field__input {
+  width: 100%;
+  height: 10px;
+  border: 1px solid #34495E;
+  margin-bottom: 10px;
+  overflow: hidden;
+  -webkit-appearance: none;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    width: 1px;
+  }
+}
+.health {
+  &::-webkit-slider-thumb {
+    box-shadow: -360px 0 0 360px #E74C3C;
+  }
+  &::-webkit-slider-thumb {
+    background-color: #E74C3C;
+  }
+}
+.thirst {
+  &::-webkit-slider-thumb {
+    box-shadow: -360px 0 0 360px #3498DB;
+  }
+  &::-webkit-slider-thumb {
+    background-color: #3498DB;
+  }
+}
+.hunger {
+  &::-webkit-slider-thumb {
+    box-shadow: -360px 0 0 360px #E67E22;
+  }
+  &::-webkit-slider-thumb {
+    background-color: #E67E22;
+  }
+}
+.fatigue {
+  &::-webkit-slider-thumb {
+    box-shadow: -360px 0 0 360px #95A5A6;
+  }
+  &::-webkit-slider-thumb {
+    background-color: #95A5A6;
+  }
+}

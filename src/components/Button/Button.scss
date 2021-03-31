@@ -1,0 +1,39 @@
+.btn {
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    opacity: .9;
+  }
+  &:active {
+    transform: scale(.98);
+  }
+}
+.red {
+  background-color: #E74C3C;
+  box-shadow: 0 0 3px rgba(231, 76, 60, 0.5);
+}
+.blue {
+  background-color: #3498DB;
+  box-shadow: 0 0 3px rgba(52, 152, 219, 0.5);
+}
+.orange {
+  background-color: #E67E22;
+  box-shadow: 0 0 3px rgba(230, 126, 34, 0.5);
+}
+.grey {
+  background-color: #95A5A6;
+  box-shadow: 0 0 3px rgba(149, 165, 166, 0.5);
+}
