@@ -1,6 +1,7 @@
 import './RangeField.scss'
 import React from 'react'
 import classNames from "classnames"
+import store from "../../state/mobxState"
 
 export const RangeField = ({label, range, className}) => {
 	return (
@@ -8,8 +9,7 @@ export const RangeField = ({label, range, className}) => {
 			<div className={'range-field__label'}>
 				{label}:
 			</div>
-			<input className={classNames('range-field__input', className)} type="range" min={0} max={200} value={range} disabled/>
+			<input className={classNames('range-field__input', className)} type="range" min={store.minRange} max={store.maxRange} value={range} disabled/>
 		</>
 		)
-
 }

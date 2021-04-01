@@ -4,6 +4,7 @@ import {RangeField} from "./components/RangeField/RangeField"
 import {Button} from "./components/Button/Button"
 import {observer} from "mobx-react"
 import store from "./state/mobxState"
+import dead from './assets/image/dead.gif'
 
 let timer = store.startGame()
 
@@ -22,6 +23,8 @@ const  App = observer(() => {
         el === 'Отдохнуть' && store.relax()
         el === 'Работать' && store.work()
     }
+
+    if(store.pet.health.range <= 0) return <div className={'app wrapper'}><img src={dead} alt="dead" /></div>
 
     return (
         <div className="app">

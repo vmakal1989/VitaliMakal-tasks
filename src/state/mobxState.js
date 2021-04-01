@@ -37,46 +37,78 @@ class State {
 	thirstDeclineUnit = 0.7
 	hungerDeclineUnit = 0.3
 	fatigueDeclineUnit = 0.05
+	maxRange = 200
+	minRange = 0
 
 	constructor() {
 		makeAutoObservable(this);
 	}
 	startGame() {
 		let timer = setInterval(() => {
-			if(this.pet.thirst.range <= 100) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.05, 0.1]
-			if(this.pet.thirst.range >= 100 && this.pet.thirst.range <= 200 ) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.15, 0.25]
-			if(this.pet.thirst.range >= 200) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.25, 0.35]
+			if(this.pet.thirst.range <= this.minRange) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.05, 0.1]
+			if(this.pet.thirst.range >= this.minRange && this.pet.thirst.range <= this.maxRange ) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.15, 0.25]
+			if(this.pet.thirst.range >= this.maxRange) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.25, 0.35]
 
-			if(this.pet.hunger.range >= 100 && this.pet.hunger.range <= 200 ) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.25, 0.35]
-			if(this.pet.hunger.range >= 200) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.45, 0.45]
+			if(this.pet.hunger.range >= this.minRange && this.pet.hunger.range <= this.maxRange ) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.25, 0.35]
+			if(this.pet.hunger.range >= this.maxRange) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [0.45, 0.45]
 
-			if(this.pet.hunger.range >= 200 && this.pet.thirst.range >= 200) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [1, 1]
+			if(this.pet.hunger.range >= this.maxRange && this.pet.thirst.range >= this.maxRange) [this.healthDeclineUnit, this.fatigueDeclineUnit] = [1, 1]
 
 			this.pet.health.range -= this.healthDeclineUnit
-			if(this.pet.thirst.range < 200) this.pet.thirst.range += this.thirstDeclineUnit
-			if(this.pet.hunger.range < 200) this.pet.hunger.range += this.hungerDeclineUnit
-			if(this.pet.fatigue.range < 200) this.pet.fatigue.range += this.fatigueDeclineUnit
+			if(this.pet.thirst.range < this.maxRange) this.pet.thirst.range += this.thirstDeclineUnit
+			if(this.pet.hunger.range < this.maxRange) this.pet.hunger.range += this.hungerDeclineUnit
+			if(this.pet.fatigue.range < this.maxRange) this.pet.fatigue.range += this.fatigueDeclineUnit
 		}, 200)
 		return timer
 	}
 	eat() {
-		if(this.pet.hunger.range > 0) this.pet.hunger.range -= 10
-		if(this.pet.health.range < 200) this.pet.health.range += 2
+		if(this.pet.hunger.range > this.minRange) {
+			this.pet.hunger.range -= 10
+			if(this.pet.hunger.range < this.minRange) this.pet.hunger.range = this.minRange
+		}
+		if(this.pet.health.range < this.maxRange) {
+			this.pet.health.range += 2
+			if(this.pet.health.range > this.maxRange) this.pet.health.range = this.maxRange
+		}
 	}
 	drink() {
-		if(this.pet.thirst.range > 0) this.pet.thirst.range -= 10
-		if(this.pet.health.range > 0) this.pet.health.range -= 1
+		if(this.pet.thirst.range > this.minRange) {
+			this.pet.thirst.range -= 10
+			if(this.pet.thirst.range < this.minRange) this.pet.thirst.range = this.minRange
+		}
+		if(this.pet.health.range > this.minRange) {
+			this.pet.health.range -= 1
+			if(this.pet.health.range < this.minRange) this.pet.health.range = this.minRange
+		}
 	}
 	relax() {
-		if(this.pet.health.range < 200) this.pet.health.range += getRandomIntInclusive(1,10)
-		if(this.pet.fatigue.range > 0) this.pet.fatigue.range -= getRandomIntInclusive(10,20)
+		if(this.pet.health.range < this.maxRange) {
+			this.pet.health.range += getRandomIntInclusive(1,10)
+			if(this.pet.health.range > this.maxRange) this.pet.health.range = this.maxRange
+		}
+		if(this.pet.fatigue.range > this.minRange) {
+			this.pet.fatigue.range -= getRandomIntInclusive(10,20)
+			if(this.pet.fatigue.range < this.minRange) this.pet.fatigue.range = this.minRange
+		}
 
 	}
 	work() {
-		if(this.pet.thirst.range < 200) this.pet.thirst.range += getRandomIntInclusive(30,40)
-		if(this.pet.hunger.range < 200) this.pet.hunger.range += getRandomIntInclusive(10,20)
-		if(this.pet.fatigue.range < 200) this.pet.fatigue.range += getRandomIntInclusive(10,20)
-		if(this.pet.health.range > 0) this.pet.health.range -= getRandomIntInclusive(10,20)
+		if(this.pet.thirst.range < this.maxRange) {
+			this.pet.thirst.range += getRandomIntInclusive(30,40)
+			if(this.pet.thirst.range > this.maxRange) this.pet.thirst.range = this.maxRange
+		}
+		if(this.pet.hunger.range < this.maxRange) {
+			this.pet.hunger.range += getRandomIntInclusive(10,20)
+			if(this.pet.hunger.range > this.maxRange) this.pet.hunger.range = this.maxRange
+		}
+		if(this.pet.fatigue.range < this.maxRange) {
+			this.pet.fatigue.range += getRandomIntInclusive(10,20)
+			if(this.pet.fatigue.range > this.maxRange) this.pet.fatigue.range = this.maxRange
+		}
+		if(this.pet.health.range > this.minRange) {
+			this.pet.health.range -= getRandomIntInclusive(10,20)
+			if(this.pet.health.range < this.minRange)  this.pet.health.range = this.minRange
+		}
 	}
 }
 
