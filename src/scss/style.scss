@@ -1,0 +1,94 @@
+@import 'reset/reset';
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+}
+.btn {
+  min-width: 120px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 3px;
+  margin: 0 10px 30px 10px;
+  padding: .375rem .75rem;
+  &:hover {
+    opacity: .8;
+  }
+  &:active {
+    transform: scale(.98);
+  }
+}
+.active {
+  background-color: #198754;
+  color: #fff;
+}
+.game {
+  position: relative;
+}
+.game__snake {
+  position: relative;
+  .canvas {
+    background-color: #fafafa;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    border-radius: 1%;
+    overflow: hidden;
+  }
+  .wall {
+    background-color: #ff6d00;
+  }
+  .snake-body {
+    box-sizing: border-box;
+    background-color: #8d6e63;
+    border: 1px solid #000000;
+  }
+  .fruit {
+    background-color: #76ff03;
+    border-radius: 50%;
+  }
+  .snake-head {
+    background-color: #222222;
+    border-radius: 3px;
+  }
+}
+.footer {
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  &__btn {
+    background-color: burlywood;
+    margin: 0 10px 0 0;
+  }
+  &__score {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+.inform-window {
+  position: absolute;
+  top: 50px;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width: 200px;
+  padding: 20px 100px;
+  box-shadow: 0 0 7px 0 #000000;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: #fff;
+  display: none;
+}

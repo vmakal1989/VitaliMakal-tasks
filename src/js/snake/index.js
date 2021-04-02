@@ -6,6 +6,8 @@ export const openSnake = () => {
 		if(snake.direction  !== 'right' && event.code === 'ArrowLeft' || event.code === 'KeyA') snake.direction = 'left'
 		if(snake.direction  !== 'left' && event.code === 'ArrowRight' || event.code === 'KeyD') snake.direction = 'right'
 	})
+	document.gameInterval && clearInterval(document.gameInterval)
+	document.speedInterval && clearInterval(document.speedInterval)
 }
 
 const gameInit = () => {
@@ -22,9 +24,7 @@ const game = {
 	score: 0,
 
 	start() {
-		document.gameInterval = setInterval(() => {
-			snake.move(snake.direction)
-		}, snake.speed)
+		document.gameInterval = setInterval(() => snake.move(snake.direction) , snake.speed)
 	},
 	stop() {
 		clearInterval(document.gameInterval)
@@ -38,7 +38,7 @@ const game = {
 			this.score = 0
 			document.querySelector('.footer__btn').disabled = false
 			gameInit()
-		}, 5000)
+		}, 2000)
 	}
 }
 

@@ -1,4 +1,4 @@
-import '../scss/main.scss'
+import '../scss/style.scss'
 import { openSnake } from './snake/index'
 import { openPong } from './pong/index'
 
