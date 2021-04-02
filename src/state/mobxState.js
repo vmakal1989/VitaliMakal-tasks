@@ -33,6 +33,7 @@ class State {
 		{label: 'Отдохнуть', class: 'orange'},
 		{label: 'Работать', class: 'grey'}
 	]
+	history = []
 	healthDeclineUnit = 0.05
 	thirstDeclineUnit = 0.7
 	hungerDeclineUnit = 0.3
@@ -62,6 +63,7 @@ class State {
 		return timer
 	}
 	eat() {
+		this.history.push(`Вы покормили питомца.`)
 		if(this.pet.hunger.range > this.minRange) {
 			this.pet.hunger.range -= 10
 			if(this.pet.hunger.range < this.minRange) this.pet.hunger.range = this.minRange
@@ -72,16 +74,18 @@ class State {
 		}
 	}
 	drink() {
+		this.history.push(`Вы напоили вашего питомца.`)
 		if(this.pet.thirst.range > this.minRange) {
 			this.pet.thirst.range -= 10
 			if(this.pet.thirst.range < this.minRange) this.pet.thirst.range = this.minRange
 		}
 		if(this.pet.health.range > this.minRange) {
-			this.pet.health.range -= 1
+			this.pet.health.range += 1
 			if(this.pet.health.range < this.minRange) this.pet.health.range = this.minRange
 		}
 	}
 	relax() {
+		this.history.push(`Ваш питомец отдохнул`)
 		if(this.pet.health.range < this.maxRange) {
 			this.pet.health.range += getRandomIntInclusive(1,10)
 			if(this.pet.health.range > this.maxRange) this.pet.health.range = this.maxRange
@@ -93,6 +97,7 @@ class State {
 
 	}
 	work() {
+		this.history.push(`Ваш питомец немного поработал`)
 		if(this.pet.thirst.range < this.maxRange) {
 			this.pet.thirst.range += getRandomIntInclusive(30,40)
 			if(this.pet.thirst.range > this.maxRange) this.pet.thirst.range = this.maxRange

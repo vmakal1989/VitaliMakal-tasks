@@ -5,6 +5,8 @@ import {Button} from "./components/Button/Button"
 import {observer} from "mobx-react"
 import store from "./state/mobxState"
 import dead from './assets/image/dead.gif'
+import {NavLink, Route} from "react-router-dom"
+import {History} from "./components/History/History"
 
 let timer = store.startGame()
 
@@ -28,15 +30,24 @@ const  App = observer(() => {
 
     return (
         <div className="app">
-            <h1 className="title">MiniGame</h1>
-            <div className="wrapper">
-                <div className={"stats"}>
-                    { renderRangeFields() }
-                </div>
-                <div className={'controls'}>
-                    { renderButtons() }
-                </div>
+            <div className={'header'}>
+                <NavLink exact to="/" activeClassName='active'>Главная</NavLink>
+                <NavLink exact to="/history" activeClassName='active'>История</NavLink>
             </div>
+            <h1 className="title">MiniGame</h1>
+            <Route path='/' exact render={() =>
+                <React.Fragment>
+                    <div className="wrapper">
+                        <div className={"stats"}>
+                            { renderRangeFields() }
+                        </div>
+                        <div className={'controls'}>
+                            { renderButtons() }
+                        </div>
+                    </div>
+                </React.Fragment>
+            }/>
+            <Route path='/history' exact render={() => <History />}/>
         </div>
     )
 })

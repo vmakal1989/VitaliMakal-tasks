@@ -1,6 +1,23 @@
 body {
   background: #EEEEEE;
 }
+.header {
+  display: flex;
+  justify-content: center;
+  a {
+    padding: 20px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #222222;
+    &:hover {
+      opacity: .8;
+    }
+  }
+  .active {
+    color: #ff3d00;
+  }
+}
 .title {
   font-family: Roboto;
   font-style: normal;
@@ -12,22 +29,21 @@ body {
   margin-top: 50px;
 }
 .wrapper {
-  width: 860px;
+  max-width: 860px;
   background: #FFFFFF;
   margin: 50px auto;
   padding: 30px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-
   .stats {
-    width: 380px;
+    width: 100%;
     padding: 20px;
     background: #FFFFFF;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
+    margin-right: 20px;
   }
   .controls {
-    width: 380px;
+    width: 100%;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.7);
     padding: 20px;
     display: flex;
@@ -36,6 +52,24 @@ body {
   }
   img {
     margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media(max-width: 768px) {
+  .wrapper {
+    max-width: 768px;
+    margin: 0;
+  }
+}
+@media(max-width: 360px) {
+  .wrapper {
+    max-width: 360px;
+    flex-wrap: wrap;
+    .stats {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
   }
 }
 
