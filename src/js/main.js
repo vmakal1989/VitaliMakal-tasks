@@ -1,8 +1,9 @@
 import '../scss/style.scss'
 import { openSnake } from './snake/index'
 import { openPong } from './pong/index'
+import { openJumper} from './jumper/jumper'
 
-const games = ['Pong', 'Snake']
+const games = ['Pong', 'Snake', 'Jumper']
 
 let btnGroup = document.querySelector('.btn-group')
 
@@ -10,19 +11,6 @@ let title = document.createElement('h1')
 title.innerHTML = 'Выберите игру'
 title.classList.add('title')
 btnGroup.append(title)
-
-const openGame = (name) => {
-	name === 'Snake' && openSnake()
-	name === 'Pong' && openPong()
-}
-
-const  chooseGame = (btn, name) => {
-	document.querySelectorAll('.btn').forEach(el => el.classList.remove('active'))
-	document.querySelector('.game').className = 'game'
-	document.querySelector('.game').classList.add('game__' + name.toLowerCase())
-	btn.classList.add('active')
-	openGame(name)
-}
 
 games.forEach(name => {
 	let btn = document.createElement('button')
@@ -32,4 +20,17 @@ games.forEach(name => {
 	btn.addEventListener('click',  function() { chooseGame(this, name) })
 })
 
+const  chooseGame = (btn, name) => {
+	document.querySelectorAll('.btn').forEach(el => el.classList.remove('active'))
+	document.querySelector('.game').className = 'game'
+	document.querySelector('.game').classList.add('game__' + name.toLowerCase())
+	btn.classList.add('active')
+	openGame(name)
+}
+
+const openGame = (name) => {
+	name === 'Snake' && openSnake()
+	name === 'Pong' && openPong()
+	name === 'Jumper' && openJumper()
+}
 

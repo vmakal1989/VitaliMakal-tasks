@@ -6,12 +6,12 @@ export const openSnake = () => {
 		if(snake.direction  !== 'right' && event.code === 'ArrowLeft' || event.code === 'KeyA') snake.direction = 'left'
 		if(snake.direction  !== 'left' && event.code === 'ArrowRight' || event.code === 'KeyD') snake.direction = 'right'
 	})
-	document.gameInterval && clearInterval(document.gameInterval)
-	document.speedInterval && clearInterval(document.speedInterval)
+	window.gameInterval && clearInterval(window.gameInterval)
+	window.speedInterval && clearInterval(window.speedInterval)
 }
 
 const gameInit = () => {
-	document.gameInterval && clearInterval(document.gameInterval)
+	window.gameInterval && clearInterval(window.gameInterval)
 	canvas.init()
 	canvas.render()
 	snake.render()
@@ -24,10 +24,10 @@ const game = {
 	score: 0,
 
 	start() {
-		document.gameInterval = setInterval(() => snake.move(snake.direction) , snake.speed)
+		window.gameInterval = setInterval(() => snake.move(snake.direction) , snake.speed)
 	},
 	stop() {
-		clearInterval(document.gameInterval)
+		clearInterval(window.gameInterval)
 		let informWindow = document.querySelector('.inform-window')
 		informWindow.innerHTML = `Your score: ${this.score}!`
 		informWindow.style.display = 'block'

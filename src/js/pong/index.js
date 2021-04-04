@@ -1,8 +1,8 @@
 export const openPong = () => {
 	game.reset()
 	gameInit()
-	document.gameInterval && clearInterval(document.gameInterval)
-	document.speedInterval && clearInterval(document.speedInterval)
+	window.gameInterval && clearInterval(window.gameInterval)
+	window.speedInterval && clearInterval(window.speedInterval)
 }
 
 const gameInit = () => {
@@ -13,7 +13,7 @@ const gameInit = () => {
 	compRacket.render()
 	renderFooter()
 	renderInformWindow()
-	document.addEventListener('mousemove', event => {
+	window.addEventListener('mousemove', event => {
 		let rect = document.querySelector('.game__pong')
 		if(rect) rect = rect.getBoundingClientRect()
 		if(rect) userRacket.posY = event.clientY - rect.top - userRacket.height / 2
@@ -24,9 +24,9 @@ const game = {
 	start() {
 		score.comp = 0
 		score.user = 0
-		document.speedInterval = setInterval(() => {
-			document.gameInterval && clearInterval(document.gameInterval)
-			document.gameInterval = setInterval(()=> {
+		window.speedInterval = setInterval(() => {
+			window.gameInterval && clearInterval(window.gameInterval)
+			window.gameInterval = setInterval(()=> {
 				compRacket.posY +=  ((ball.posY + compRacket.height / 2 - (compRacket.posY + compRacket.height / 2))) * 0.08
 				ball.move()
 				gameInit()
@@ -45,8 +45,8 @@ const game = {
 		ball.speed = 30
 	},
 	stop() {
-		clearInterval(document.gameInterval)
-		clearInterval(document.speedInterval)
+		clearInterval(window.gameInterval)
+		clearInterval(window.speedInterval)
 		setTimeout(() => {
 			score.comp = 0
 			score.user = 0
