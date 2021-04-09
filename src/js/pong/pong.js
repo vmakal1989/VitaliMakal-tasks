@@ -1,18 +1,10 @@
+import {renderInformWindow, renderFooter} from "../common"
+
 export const openPong = () => {
 	game.reset()
 	gameInit()
 	window.gameInterval && clearInterval(window.gameInterval)
 	window.speedInterval && clearInterval(window.speedInterval)
-}
-
-const gameInit = () => {
-	canvas.init()
-	ball.render()
-	score.render()
-	userRacket.render()
-	compRacket.render()
-	renderFooter()
-	renderInformWindow()
 	window.addEventListener('mousemove', event => {
 		let rect = document.querySelector('.game__pong')
 		if(rect) rect = rect.getBoundingClientRect()
@@ -20,25 +12,42 @@ const gameInit = () => {
 	})
 }
 
+const gameInit = () => {
+	score.comp = 0
+	score.user = 0
+	canvas.init()
+	canvas.render()
+	ball.render()
+	score.render()
+	userRacket.render()
+	compRacket.render()
+	renderFooter('pong', `${score.user} : ${score.comp}`, game.start)
+}
+
 const game = {
 	start() {
-		score.comp = 0
-		score.user = 0
 		window.speedInterval = setInterval(() => {
 			window.gameInterval && clearInterval(window.gameInterval)
 			window.gameInterval = setInterval(()=> {
 				compRacket.posY +=  ((ball.posY + compRacket.height / 2 - (compRacket.posY + compRacket.height / 2))) * 0.08
 				ball.move()
-				gameInit()
+				game.loop()
 				ball.speed += 0.05
 			}, 1000 / ball.speed)
 		}, 100)
 	},
 	missBall(player) {
 		player === 'user' ? score.comp++ : score.user++
-		this.reset()
-		gameInit()
-		if(score.user === score.max || score.comp === score.max) this.stop()
+		game.reset()
+		if(score.user === score.max || score.comp === score.max) game.stop()
+	},
+	loop() {
+		canvas.render()
+		ball.render()
+		score.render()
+		userRacket.render()
+		compRacket.render()
+		document.querySelector('.footer__score').innerHTML = `Score: ${score.user} : ${score.comp}`
 	},
 	reset() {
 		ball.resetBallPos()
@@ -47,6 +56,7 @@ const game = {
 	stop() {
 		clearInterval(window.gameInterval)
 		clearInterval(window.speedInterval)
+		renderInformWindow('pong', `Score: ${score.user}:${score.comp}!`)
 		setTimeout(() => {
 			score.comp = 0
 			score.user = 0
@@ -60,13 +70,14 @@ const canvas = {
 	height: 400,
 	init(){
 		document.querySelector('.game').innerHTML = ''
-		let canvas = document.createElement('canvas')
-		canvas.style.width = this.width + 'px'
-		canvas.style.height = this.height + 'px'
-		canvas.style.border = '1px solid #222222'
-		document.querySelector('.game__pong').append(canvas)
-
-		window.ctx = canvas.getContext('2d')
+		window.cvs = document.createElement('canvas')
+		cvs.style.width = canvas.width + 'px'
+		cvs.style.height = canvas.height + 'px'
+		cvs.style.border = '1px solid #222222'
+		document.querySelector('.game__pong').append(cvs)
+	},
+	render() {
+		window.ctx = cvs.getContext('2d')
 		ctx.canvas.width = this.width
 		ctx.canvas.height =  this.height
 		ctx.fillRect(0, 0, this.width, this.height)
@@ -78,30 +89,6 @@ const canvas = {
 		}
 	}
 }
-const renderFooter = () => {
-	let footer = document.createElement('div')
-	footer.classList.add('footer')
-	document.querySelector('.game__pong').append(footer)
-	let btn = document.createElement('button')
-	btn.classList.add('btn','footer__btn')
-	btn.innerHTML = 'Start'
-	btn.style.marginTop = '10px'
-	footer.append(btn)
-
-	btn.addEventListener('click', () => {
-		game.start()
-	})
-}
-
-const renderInformWindow = () => {
-	let informWindow = document.createElement('div')
-	informWindow.classList.add('inform-window')
-	document.querySelector('.game').append(informWindow)
-	score.user === score.max ? informWindow.innerHTML = 'You win!' : informWindow.innerHTML = 'You lose!'
-	score.max === score.user || score.max === score.comp
-		? informWindow.style.display = 'block' : informWindow.style.display = 'none'
-}
-
 const ball = {
 	color: '#ffffff',
 	radius: 10,
@@ -158,10 +145,10 @@ const score = {
 	comp: 0,
 	max: 5,
 	render() {
-		ctx.fillStyle = this.color
+		ctx.fillStyle = score.color
 		ctx.font = 'bold 50px serif'
-		ctx.fillText(this.user, 50 , 50)
-		ctx.fillText(this.comp, canvas.width - 75 , 50)
+		ctx.fillText(score.user, 50 , 50)
+		ctx.fillText(score.comp, canvas.width - 75 , 50)
 	}
 }
 

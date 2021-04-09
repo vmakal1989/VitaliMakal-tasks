@@ -1,3 +1,5 @@
+import {renderInformWindow, renderFooter} from "../common"
+
 export const openSnake = () => {
 	gameInit()
 	document.addEventListener('keydown', event => {
@@ -9,34 +11,26 @@ export const openSnake = () => {
 	window.gameInterval && clearInterval(window.gameInterval)
 	window.speedInterval && clearInterval(window.speedInterval)
 }
-
 const gameInit = () => {
 	window.gameInterval && clearInterval(window.gameInterval)
 	canvas.init()
 	canvas.render()
 	snake.render()
 	fruit.render()
-	renderFooter()
-	renderInformWindow()
+	renderFooter('snake', game.score, game.start)
 }
-
 const game = {
 	score: 0,
-
 	start() {
 		window.gameInterval = setInterval(() => snake.move(snake.direction) , snake.speed)
 	},
 	stop() {
 		clearInterval(window.gameInterval)
-		let informWindow = document.querySelector('.inform-window')
-		informWindow.innerHTML = `Your score: ${this.score}!`
-		informWindow.style.display = 'block'
+		renderInformWindow('snake', `Your score: ${game.score}`)
 		snake.snake = []
 		snake.speed = 300
 		setTimeout(() => {
-			informWindow.style.display = 'none'
 			this.score = 0
-			document.querySelector('.footer__btn').disabled = false
 			gameInit()
 		}, 2000)
 	}
@@ -80,31 +74,6 @@ const canvas = {
 		walls.forEach(el => el.classList.add('wall'))
 	}
 }
-
-const renderFooter = () => {
-	let footer = document.createElement('div')
-	footer.classList.add('footer')
-	document.querySelector('.game__snake').append(footer)
-	let btn = document.createElement('button')
-	btn.classList.add('footer__btn', 'btn')
-	btn.innerHTML = 'Start'
-	footer.append(btn)
-	let score = document.createElement('div')
-	score.classList.add('footer__score')
-	score.innerHTML = `Score: ${game.score}`
-	footer.append(score)
-	btn.addEventListener('click', () => {
-		btn.disabled = true
-		game.start()
-	})
-}
-
-const renderInformWindow = () => {
-	let informWindow = document.createElement('div')
-	informWindow.classList.add('inform-window')
-	document.querySelector('.game__snake').append(informWindow)
-}
-
 const snake = {
 	snake: [],
 	speed: 300,
@@ -128,7 +97,7 @@ const snake = {
 			'top': `[posX = '${snakeHeadPos[0]}'][posY = '${snakeHeadPos[1] + 1}']`,
 			'bottom': `[posX = '${snakeHeadPos[0]}'][posY = '${snakeHeadPos[1] - 1 }']`
 		}
-		
+
 		let newSnakeHead = document.querySelector(directions[val])
 
 		if(newSnakeHead.classList.contains('wall') || newSnakeHead.classList.contains('snake-body')) game.stop()
@@ -149,7 +118,6 @@ const snake = {
 		return false
 	}
 }
-
 const fruit = {
 	init() {
 		let posX = Math.round(Math.random() * ((canvas.tilesInWidth - 1) - 2) + 2 )

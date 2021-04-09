@@ -1,6 +1,6 @@
 import '../scss/style.scss'
-import { openSnake } from './snake/index'
-import { openPong } from './pong/index'
+import { openSnake } from './snake/snake'
+import { openPong } from './pong/pong'
 import { openJumper} from './jumper/jumper'
 
 const games = ['Pong', 'Snake', 'Jumper']
