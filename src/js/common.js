@@ -1,3 +1,10 @@
+export const getCanvas = (game) => {
+	document.querySelector('.game').innerHTML = ''
+	let canvas = document.createElement('div')
+	document.querySelector(`.game__${game}`).append(canvas)
+	canvas.classList.add('canvas')
+	return canvas
+}
 export const renderFooter = (game, score, start) => {
 	let footer = document.createElement('div')
 	footer.classList.add('footer')

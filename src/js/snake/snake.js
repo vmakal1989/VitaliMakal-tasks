@@ -1,4 +1,4 @@
-import {renderInformWindow, renderFooter} from "../common"
+import {renderInformWindow, renderFooter, getCanvas} from "../common"
 
 export const openSnake = () => {
 	gameInit()
@@ -8,11 +8,10 @@ export const openSnake = () => {
 		if(snake.direction  !== 'right' && event.code === 'ArrowLeft' || event.code === 'KeyA') snake.direction = 'left'
 		if(snake.direction  !== 'left' && event.code === 'ArrowRight' || event.code === 'KeyD') snake.direction = 'right'
 	})
-	window.gameInterval && clearInterval(window.gameInterval)
-	window.speedInterval && clearInterval(window.speedInterval)
 }
 const gameInit = () => {
 	window.gameInterval && clearInterval(window.gameInterval)
+	window.speedInterval && clearInterval(window.speedInterval)
 	canvas.init()
 	canvas.render()
 	snake.render()
@@ -22,7 +21,9 @@ const gameInit = () => {
 const game = {
 	score: 0,
 	start() {
-		window.gameInterval = setInterval(() => snake.move(snake.direction) , snake.speed)
+		window.gameInterval = setInterval(function snakeMove(){
+			snake.move(snake.direction)
+		}, snake.speed)
 	},
 	stop() {
 		clearInterval(window.gameInterval)
@@ -41,10 +42,7 @@ const canvas = {
 	tilesInHeight: 20,
 	tileSize: 15,
 	init(){
-		document.querySelector('.game').innerHTML = ''
-		let canvas = document.createElement('div')
-		document.querySelector('.game__snake').append(canvas)
-		canvas.classList.add('canvas')
+		let canvas = getCanvas('snake')
 		canvas.style.width = this.tilesInWidth * this.tileSize + 'px'
 		canvas.style.height = this.tilesInHeight * this.tileSize + 'px'
 	},
@@ -100,11 +98,18 @@ const snake = {
 
 		let newSnakeHead = document.querySelector(directions[val])
 
-		if(newSnakeHead.classList.contains('wall') || newSnakeHead.classList.contains('snake-body')) game.stop()
+		if(newSnakeHead.classList.contains('wall') || newSnakeHead.classList.contains('snake-body')) {
+			game.stop()
+		}
 		else {
 			this.snake.unshift(newSnakeHead)
-			if(!this.eatFruit(newSnakeHead)) this.snake.pop().className = 'tile'
-			this.snake.map((el, index) => index === 0 ? el.className = 'snake-head snake tile' : el.className = 'snake-body snake tile')
+			if(!this.eatFruit(newSnakeHead)){
+				this.snake.pop().className = 'tile'
+			}
+			this.snake.map((el, index) =>
+				index === 0
+				? el.className = 'snake-head snake tile'
+				: el.className = 'snake-body snake tile')
 		}
 	},
 	eatFruit(newSnakeHead) {
@@ -112,7 +117,11 @@ const snake = {
 			fruit.render()
 			let score = document.querySelector('.footer__score')
 			score.innerHTML = `Score: ${game.score += 5}`
-			if(game.score % 20 === 0) snake.speed -= 20, clearInterval(document.gameInterval), game.start()
+			if(game.score % 20 === 0) {
+				snake.speed -= 20
+				clearInterval(window.gameInterval)
+				game.start()
+			}
 			return true
 		}
 		return false
