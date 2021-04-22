@@ -1,0 +1,16 @@
+@import "src/styles/mixins/font";
+.meaning-info {
+  width: 55px;
+  margin: 0 40px;
+  padding-left: 12px;
+  @include font_options("Montserrat", normal, 12px, normal, 15px, 0, #5C626D);
+  &_green {
+    background: url("src/assets/images/svg/green-circle.svg") no-repeat left;
+  }
+  &_yellow {
+    background: url("src/assets/images/svg/yellow-circle.svg") no-repeat left;
+  }
+  &_red {
+    background: url("src/assets/images/svg/red-circle.svg") no-repeat left;
+  }
+}
