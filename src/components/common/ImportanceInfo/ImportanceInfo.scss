@@ -1,6 +1,6 @@
 @import "src/styles/mixins/font";
 .meaning-info {
-  width: 55px;
+  width: 60px;
   margin: 0 40px;
   padding-left: 12px;
   @include font_options("Montserrat", normal, 12px, normal, 15px, 0, #5C626D);

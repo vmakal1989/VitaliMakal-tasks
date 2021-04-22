@@ -1,5 +1,71 @@
-.avatar-group {
-  width: 85px;
+@import "src/styles/mixins/font";
+
+.avatars {
+  min-width: 85px;
   margin: 0 40px;
   display: flex;
+  position: relative;
+
+  &__item {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    margin-left: -5px;
+    cursor: pointer;
+    &:hover {
+      z-index: 1;
+    }
+  }
+  &__hidden-items {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #6FCF97;
+    @include font_options("Roboto", normal, 9px, 500, 11px, 0, #F2F2F2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: -8px;
+    &:hover .avatars__hidden-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      min-height: 20px;
+      left: 0;
+      bottom: 100%;
+    }
+  }
+  &__hidden-container {
+    max-height: 70px;
+    border-radius: 3px;
+    position: absolute;
+    display: none;
+    bottom: 30px;
+    left: 15px;
+    box-shadow:  0 0 3px #222222;
+    padding: 5px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background: #ffffff;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+  &__hidden-item {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin: 2px 3px;
+  }
 }

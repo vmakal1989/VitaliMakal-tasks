@@ -1,0 +1,28 @@
+@import "src/styles/mixins/font";
+
+.main__btn {
+  width: 139px;
+  height: 34px;
+  background: #884CB2;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  @include font_options('Poppins', normal, 12px, normal, 9px, 0, #fff);
+  span {
+    display: flex;
+    align-items: center;
+    place-content: center;
+    &::before {
+      content: url("src/assets/images/svg/plus.svg");
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+    }
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    transform: scale(.98);
+  }
+}

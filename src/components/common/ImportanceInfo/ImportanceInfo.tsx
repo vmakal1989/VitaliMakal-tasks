@@ -5,7 +5,7 @@ type Props = {
 	type: "Minor" | "Critical" | "Normal"
 }
 
-const MeaningInfo: React.FC<Props> = ({type}): JSX.Element => {
+const ImportanceInfo: React.FC<Props> = ({type}): JSX.Element => {
 
 	const withStyle = {
 		"Minor": "green",
@@ -20,4 +20,4 @@ const MeaningInfo: React.FC<Props> = ({type}): JSX.Element => {
 	)
 }
 
-export default MeaningInfo
+export default ImportanceInfo

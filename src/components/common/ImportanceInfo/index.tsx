@@ -1,4 +1,4 @@
-import MeaningInfo from "./MeaningInfo"
-import "./Meaning.scss"
+import ImportanceInfo from "./ImportanceInfo"
+import "./ImportanceInfo.scss"
 
-export default MeaningInfo
+export default ImportanceInfo

@@ -1,11 +1,45 @@
-import React from 'react'
-import ProfileIcon from "src/components/common/ProfileIcon";
+import React, {useState} from 'react'
+import ProfileIcon from "src/components/common/ProfileIcon"
+import classNames from "classnames"
 
-const AvatarGroup: React.FC = (): JSX.Element => {
+type Props = {
+	usersId: Array<number>
+}
+
+const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
 	return (
-		<div className="avatar-group">
-			<ProfileIcon classType="post" />
-			<ProfileIcon classType="post" />
+		<div className="avatars">
+			{
+				usersId.map((userId, index) => {
+					if(index < 4 ) return (
+						<div className="avatars__item">
+							<ProfileIcon key={index}
+										 classType={"task"}
+										 userId={userId}/>
+						</div>
+					)
+				})
+			}
+			{
+				usersId.length > 4
+					?
+					<div className="avatars__hidden-items">
+						+{usersId.length - 4}
+							<div className={classNames(`avatars__hidden-container`)}>
+								{usersId.map((userId, index) => {
+									if(index >= 4 ) return (
+										<div className="avatars__hidden-item">
+											<ProfileIcon key={index}
+														 classType={"task"}
+														 userId={userId}/>
+										</div>
+									)
+								})}
+							</div>
+					</div>
+					:
+					''
+			}
 		</div>
 	)
 }

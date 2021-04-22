@@ -1,4 +1,4 @@
-import Tasks from "./Tasks"
-import "./Tasks.scss"
+import TaskList from "./TaskList"
+import "./TaskList.scss"
 
-export default  Tasks
+export default  TaskList

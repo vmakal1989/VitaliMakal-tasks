@@ -1,0 +1,27 @@
+@import "src/styles/mixins/font";
+.main {
+  max-width: 920px;
+  padding: 20px 15px;
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 0;
+  }
+  &__title {
+    @include font_options('Poppins', normal, 36px, 700, 54px, 0, #1D262C);
+    margin-right: 30px;
+  }
+  &__list {
+    padding: 20px 10px;
+  }
+  &__list-title {
+    @include  font_options('Poppins', normal, 18px, 400, 27px, 0, #1D262C);
+    padding-right: 87px;
+    display: inline-block;
+  }
+  .completed {
+    background: url("src/assets/images/svg/inactive.svg") no-repeat right;
+  }
+}

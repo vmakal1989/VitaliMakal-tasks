@@ -1,4 +1,4 @@
-import "./Notifications.scss"
-import Notifications from "./Notifications"
+import "./Notification.scss"
+import Notification from "./Notification"
 
-export default Notifications
+export default Notification

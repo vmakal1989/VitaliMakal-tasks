@@ -1,9 +1,9 @@
 import React from "react"
 
-const Notifications = (): JSX.Element => {
+const Notification = (): JSX.Element => {
 	return (
-		<div className='notifications' />
+		<div className='notification' />
 	)
 }
 
-export default Notifications
+export default Notification
