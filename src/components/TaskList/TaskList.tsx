@@ -54,7 +54,8 @@ const TaskList: React.FC<Props> = observer(({completed, sectionName}): JSX.Eleme
 											 statusInfoType={task.status}
 											 importanceInfoType={task.importance}
 											 taskId={task.id}
-											 usersId={task.users}/>
+											 usersId={task.users}
+											 haze={"haze"}/>
 							}
 						})
 
