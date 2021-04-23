@@ -16,7 +16,7 @@ const DotsMenu: React.FC<Props> = ({taskId}): JSX.Element => {
 		<div className="dots-menu">
 			<div className="dot" />
 			<div className="dots-menu__items">
-				{task.taskOptions.options.map((option, index) => {
+				{task.state.taskOptions.options.map((option, index) => {
 					return <DotsMenuItem key={index} option={option} taskId={taskId} onClick={handleSubmit}/>
 				})}
 			</div>

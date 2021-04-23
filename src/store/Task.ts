@@ -2,29 +2,32 @@ import {makeAutoObservable} from "mobx"
 import {tasks} from "src/db/tasks"
 
 class Task {
-	taskOptions = {
-		sections: ["On hold", "Completed"],
-		options: [
-			{
-				"Status": ["In progress", "Pending", "Completed", 'Canceled']
-			},
-			{
-				"Importance": ["Minor", "Critical", "Normal"]
-			},
-			{
-				"Delete": "Delete"
-			}
-		]
+	state = {
+		taskOptions: {
+			sections: ["On hold", "Completed"],
+			options: [
+				{
+					"Status": ["In progress", "Pending", "Completed", 'Canceled']
+				},
+				{
+					"Importance": ["Minor", "Critical", "Normal"]
+				},
+				{
+					"Delete": "Delete"
+				}
+			]
+		},
+		tasks: tasks,
+		renderTaskForm: false
 	}
-	tasks = tasks
 	constructor() {
 		makeAutoObservable(this)
 	}
 	addTask(task) {
-		this.tasks.push(task)
+		this.state.tasks.push(task)
 	}
 	removeTask(id) {
-		this.tasks = this.tasks.filter(task => task.id != id)
+		this.state.tasks = this.state.tasks.filter(task => task.id != id)
 	}
 	changeTask(id, type, option?) {
 		if(type === "Delete") {
@@ -36,24 +39,24 @@ class Task {
 		}
 	}
 	changeStatus(id, option) {
-		this.tasks.forEach(task => {
+		this.state.tasks.forEach(task => {
 			if(task.id === id){
 				task.status = option
 			}
 		})
 	}
 	changeImportance(id, option) {
-		this.tasks.forEach(task => {
+		this.state.tasks.forEach(task => {
 			if(task.id === id){
 				task.importance = option
 			}
 		})
 	}
 	getActiveTasks() {
-		return this.tasks.filter((el) => el.status === 'Pending' || el.status === "In progress")
+		return this.state.tasks.filter((el) => el.status === 'Pending' || el.status === "In progress")
 	}
 	getCompletedTasks() {
-		return this.tasks.filter((el) => el.status === 'Canceled' || el.status === "Completed")
+		return this.state.tasks.filter((el) => el.status === 'Canceled' || el.status === "Completed")
 	}
 }
 
