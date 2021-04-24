@@ -3,12 +3,13 @@ import RegistrationForm from "./components/Forms/RegistrationForm"
 import Header from "./components/Header"
 import Main from "./components/Main"
 import registrationForm from "src/store/RegistrationForm"
+import loginForm from "src/store/LoginForm"
+import LoginForm from "src/components/Forms/LoginForm"
 
 const App = (): JSX.Element =>  {
-	let render = false
+	let render = true
 	return (
 		<div className='app'>
-			<RegistrationForm form={registrationForm}/>
 			{ render && 
 			<div className="wrapper">
 				<Header /> 

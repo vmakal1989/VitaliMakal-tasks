@@ -37,7 +37,7 @@
         }
       }
       &__error {
-        @include font-options("SF UI Text00", normal, 14px, 400, 23px, 0, #ff3d00);
+        @include font-options("SF UI Text00", normal, 12px, 400, 19px, 0, #ff3d00);
       }
       &__btn-group {
         width: 100%;

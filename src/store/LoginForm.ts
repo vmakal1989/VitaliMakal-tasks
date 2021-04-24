@@ -2,7 +2,7 @@ import { Form } from "mobx-react-form"
 import dvr from "mobx-react-form/lib/validators/DVR"
 import validatorjs from "validatorjs"
 
-class RegistrationForm extends Form {
+class LoginForm extends Form {
 	plugins() {
 		return {
 			dvr: dvr(validatorjs)
@@ -19,30 +19,11 @@ class RegistrationForm extends Form {
 					rules: "required|email"
 				},
 				{
-					name: "firstName",
-					label: "First Name",
-					placeholder: "Insert First Name",
-					rules: "required|string|min:6"
-				},
-				{
-					name: "lastName",
-					label: "Last Name",
-					placeholder: "Insert Last Name",
-					rules: "required|string|min:6"
-				},
-				{
-                    name: "password",
+					name: "password",
 					label: "Password",
-					placeholder: "Insert password",
+					placeholder: "Insert Password",
 					rules: "required|string|min:6"
-				},
-				{
-					name: "passwordConfirm",
-					label: "Confirm",
-                    placeholder: "Confirm password",
-					rules: "required|string|same:password"
-				},
-
+				}
 			]
 		};
 	}
@@ -61,4 +42,4 @@ class RegistrationForm extends Form {
 }
 
 
-export default new RegistrationForm()
+export default new LoginForm()
