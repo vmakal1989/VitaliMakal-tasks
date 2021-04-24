@@ -17,14 +17,15 @@ export type ClassType = {
 
 const SimpleInput: React.FC<Props> = observer(({ field, classTypes, type, placeholder = null , options}): JSX.Element => {
 	let fieldType: JSX.Element
+
 	switch(type) {
 		case "textarea":
-			fieldType = <textarea {...field.bind({ type, placeholder }) } className={classTypes.field}/>
+			fieldType = <textarea {...field.bind({ type, placeholder }) } className={classTypes.field} />
 			break
 		case "select":
-			fieldType = <select {...field.bind({ type }) } className={classTypes.field} >
+			fieldType = <select {...field.bind({ type })}className={classTypes.field}>
 							{ options && options.map((el, index) => {
-								return <option key={index} value={el} >{el}</option>
+								return <option key={index} value={el}>{el}</option>
 							}) }
 						</select>
 			break

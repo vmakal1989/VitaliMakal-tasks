@@ -1,6 +1,7 @@
 
 type Task = {
 	id: number
+	name: string
 	description: string
 	status: 'Pending' | 'In progress' | 'Completed' | 'Canceled'
 	importance: 'Minor' | 'Normal' | 'Critical'

@@ -1,6 +1,8 @@
 import { Form } from "mobx-react-form"
 import dvr from "mobx-react-form/lib/validators/DVR"
 import validatorjs from "validatorjs"
+import task from "src/store/Task"
+import user from "src/store/User"
 
 class TaskForm extends Form {
 	plugins() {
@@ -16,7 +18,7 @@ class TaskForm extends Form {
 					name: "name",
 					label: "Name",
 					placeholder: "Insert name",
-					rules: "required|string",
+					rules: "required|string"
 				},
 				{
 					name: "description",
@@ -26,15 +28,18 @@ class TaskForm extends Form {
 				},
 				{
 					name: "status",
-					label: "Status"
+					label: "Status",
+					value: task.state.fields.filter(field => field.label === "Status")[0].options[0]
 				},
 				{
 					name: "importance",
-					label: "Importance"
+					label: "Importance",
+					value: task.state.fields.filter(field => field.label === "Importance")[0].options[0]
 				},
 				{
 					name: "executor",
-					label: "Executor"
+					label: "Executor",
+					value: user.state.users.filter((el, index) => index === 0)[0].name
 				}
 
 
@@ -45,8 +50,9 @@ class TaskForm extends Form {
 	hooks() {
 		return {
 			onSuccess(form) {
-				alert("Form is valid! Send the request here.")
-				console.log("Form Values!", form.values())
+				task.state.renderTaskForm = !task.state.renderTaskForm
+				task.addTask(form.values())
+				form.reset()
 			},
 			onError(form) {
 				alert("Form has errors!");

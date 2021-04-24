@@ -2,27 +2,28 @@ import React from  "react"
 import DotsMenuSubItem from "src/components/common/DotsMenu/DotsMenuSubItem"
 
 type Props = {
-	option: object
+	field: Field
 	taskId: number
 	onClick: (id: number, type: string, option?: string, ) => void
 }
+type Field = {
+	label: string
+	options?: Array<string>
+}
 
-const DotsMenuItem: React.FC<Props> = ({option, taskId, onClick}): JSX.Element => {
-
-	const hasSubItems = Array.isArray(option[Object.keys(option)[0]])
-	const nameItem = Object.keys(option)[0]
+const DotsMenuItem: React.FC<Props> = ({field, taskId, onClick}): JSX.Element => {
 
 	return (
-		<div className="dots-menu__item" onClick={() => !hasSubItems && onClick(taskId, Object.keys(option)[0])}>
-			{nameItem}
+		<div className="dots-menu__item" onClick={() => !field.options && onClick(taskId, field.label)}>
+			{field.label}
 			<div className="dots-menu__sub-items">
 				{
-					hasSubItems	&&
-						option[Object.keys(option)[0]].map((subOption, index) => {
+					field.options	&&
+						field.options.map((option, index) => {
 							return <DotsMenuSubItem key={index}
-													subOption={subOption}
+													option={option}
 													taskId={taskId}
-													nameParentsItem={nameItem}
+													nameParentsItem={field.label}
 													onClick={onClick}/>
 						})
 				}

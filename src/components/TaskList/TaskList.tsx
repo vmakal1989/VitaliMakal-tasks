@@ -25,7 +25,7 @@ const TaskList: React.FC<Props> = observer(({completed, sectionName}): JSX.Eleme
 						tasks.getActiveTasks().map((task, index) => {
 							if (index < maxRenderActiveTasks) {
 								return <Task key={task.id}
-											 text={task.description}
+											 text={task.name}
 											 statusInfoType={task.status}
 											 importanceInfoType={task.importance}
 											 taskId={task.id}
@@ -50,7 +50,7 @@ const TaskList: React.FC<Props> = observer(({completed, sectionName}): JSX.Eleme
 						tasks.getCompletedTasks().map((task, index) => {
 							if (index < maxRenderCompletedTasks) {
 								return <Task key={task.id}
-											 text={task.description}
+											 text={task.name}
 											 statusInfoType={task.status}
 											 importanceInfoType={task.importance}
 											 taskId={task.id}

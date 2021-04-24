@@ -1,7 +1,7 @@
 import React from 'react'
 import SearchField from "src/components/Forms/SearchField"
-import Notification from "../common/Notification"
-import ProfileIcon from "../common/ProfileIcon";
+import Notification from "src/components/common/Notification"
+import ProfileIcon from "src/components/common/ProfileIcon"
 
 const Header = (): JSX.Element => {
 	return (

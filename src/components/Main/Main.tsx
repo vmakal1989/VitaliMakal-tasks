@@ -18,7 +18,7 @@ const Main: React.FC = observer((): JSX.Element  => {
 				<Button classType={"main__btn"} text={"Add new"} onClick={handleSubmit}/>
 				{ task.state.renderTaskForm && <TaskForm  form={form} exitModalWindow={handleSubmit}/> }
 			</div>
-			{task.state.taskOptions.sections.map((el, index)=> {
+			{task.state.sections.map((el, index)=> {
 				return <TaskList key={index}
 								 completed={el === "Completed"}
 								 sectionName={el}/>

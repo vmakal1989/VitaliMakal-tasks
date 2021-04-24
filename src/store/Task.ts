@@ -1,30 +1,33 @@
 import {makeAutoObservable} from "mobx"
 import {tasks} from "src/db/tasks"
+import user from "./User"
 
 class Task {
 	state = {
-		taskOptions: {
-			sections: ["On hold", "Completed"],
-			options: [
-				{
-					"Status": ["In progress", "Pending", "Completed", 'Canceled']
-				},
-				{
-					"Importance": ["Minor", "Critical", "Normal"]
-				},
-				{
-					"Delete": "Delete"
-				}
-			]
-		},
+		sections: ["On hold", "Completed"],
+		fields: [
+			{
+				label: "Status",
+				options: ["In progress", "Pending", "Completed", 'Canceled']
+			},
+			{
+				label: "Importance",
+				options: ["Minor", "Critical", "Normal"]
+			},
+			{
+				label:"Delete"
+			}
+		],
 		tasks: tasks,
 		renderTaskForm: false
 	}
 	constructor() {
 		makeAutoObservable(this)
 	}
-	addTask(task) {
-		this.state.tasks.push(task)
+	addTask(taskData) {
+		let {name, description, status, importance} = taskData
+		let userId = user.state.users.filter(user => user.name === taskData.executor)[0].id
+		this.state.tasks.push({id: 35,name, description, status, importance, users: [userId]})
 	}
 	removeTask(id) {
 		this.state.tasks = this.state.tasks.filter(task => task.id != id)

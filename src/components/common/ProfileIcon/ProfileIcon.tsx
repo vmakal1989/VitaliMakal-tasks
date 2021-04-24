@@ -4,7 +4,7 @@ import user from "src/store/User"
 
 type Props = {
 	classType: string
-	userId: number
+	userId?: number
 }
 
 const ProfileIcon: React.FC<Props> = ({classType, userId}): JSX.Element => {
