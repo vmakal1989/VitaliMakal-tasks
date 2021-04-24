@@ -26,16 +26,16 @@ const TaskForm: React.FC<Props> = observer(({ form, exitModalWindow }): JSX.Elem
 	let usersOptions: Array<string> = user.state.users.map(el => el.name)
 
 	const classTypes: ClassType = {
-		block: "task-form__item",
-		label: "task-form__label",
-		field: "task-form__field",
-		error: "task-form__error"
+		block: "task-form__item form__item",
+		label: "task-form__label form__label",
+		field: "task-form__field form__field",
+		error: "task-form__error form__error"
 	}
 
 	return (
-		<form className="task-form" onSubmit={form.onSubmit}>
-			<h1 className={"task-form__title"}>New Task</h1>
-			<div className="task-form__items">
+		<form className="task-form form" onSubmit={form.onSubmit}>
+			<h1 className={"task-form__title form__title"}>New Task</h1>
+			<div className="task-form__items form__items">
 				<SimpleInput field={form.$('name')}
 							 classTypes={classTypes}
 							 type={"text"}/>
@@ -54,13 +54,13 @@ const TaskForm: React.FC<Props> = observer(({ form, exitModalWindow }): JSX.Elem
 							 type={"select"} 
 							 options={usersOptions}/>
 			</div>
-			<div className="task-form__btn-group">
-				<Button text={"Submit"} classType={"task-form__btn-success"} 
+			<div className="task-form__btn-group form__btn-group">
+				<Button text={"Submit"} classType={"task-form__btn-success form__btn-success"} 
 					onClick={form.onSubmit} />
-				<Button text={"Cancel"} classType={"task-form__btn-cancel"} 
+				<Button text={"Cancel"} classType={"task-form__btn-cancel form__btn-cancel"} 
 					onClick={exitModalWindow} />
 			</div>
-			<p className="task-form__error">{form.error}</p>
+			<p className="task-form__error form__error">{form.error}</p>
 		</form>
 	)
 })

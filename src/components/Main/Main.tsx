@@ -4,7 +4,7 @@ import TaskList from "src/components/TaskList"
 import task from "src/store/Task"
 import TaskForm from "src/components/Forms/TaskForm"
 import {observer} from "mobx-react"
-import form from "src/store/TaskForm"
+import taskForm from "src/store/TaskForm"
 
 const Main: React.FC = observer((): JSX.Element  => {
 	const handleSubmit = (): void => {
@@ -16,7 +16,7 @@ const Main: React.FC = observer((): JSX.Element  => {
 			<div className="main__header">
 				<div className="main__title">You’ve got <span className="scarlet">{tasksCount} task</span> today </div>
 				<Button classType={"main__btn"} text={"Add new"} onClick={handleSubmit}/>
-				{ task.state.renderTaskForm && <TaskForm  form={form} exitModalWindow={handleSubmit}/> }
+				{ task.state.renderTaskForm && <TaskForm  form={taskForm} exitModalWindow={handleSubmit}/> }
 			</div>
 			{task.state.sections.map((el, index)=> {
 				return <TaskList key={index}

@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 type Props = {
 	field: any
 	classTypes: ClassType
-	type: "text" | "textarea" | "select"
+	type: "text" | "textarea" | "select" | "email" | "password"
 	placeholder?: string
 	options?: Array<string>
 }
