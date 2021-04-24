@@ -1,14 +1,15 @@
 import React from 'react'
+import classNames from "classnames"
 
 type Props = {
-	classType: 'main' | 'form'
+	classType: string
 	text: string
 	onClick: () => void
 }
 
 const Button: React.FC<Props> = ({classType, text, onClick}): JSX.Element => {
 	return (
-		<button className={`${classType}__btn`} onClick={onClick}>
+		<button className={classNames("btn", classType)} onClick={onClick}>
 			<span>
 				{text}
 			</span>

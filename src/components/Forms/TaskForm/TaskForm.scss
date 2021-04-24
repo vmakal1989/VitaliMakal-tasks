@@ -1,0 +1,32 @@
+@import "../../../styles/mixins/font";
+.task-form {
+  position: absolute;
+  max-width: 600px;
+  max-height: 400px;
+  top: 100px;
+  left: 50%;
+  margin-left: -300px;
+  background: #ffffff;
+  border-radius: 5px;
+  z-index: 5;
+  box-shadow: 0 4px 20px #8CA4D8;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    text-align: center;
+    padding: 10px 0;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column
+  }
+  &__label {
+  }
+  &__field {
+  }
+  &__error {
+  }
+  &__label {
+  }
+}

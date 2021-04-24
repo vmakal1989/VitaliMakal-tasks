@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchField from "src/components/SearchField"
+import SearchField from "src/components/Forms/SearchField"
 import Notification from "../common/Notification"
 import ProfileIcon from "../common/ProfileIcon";
 
