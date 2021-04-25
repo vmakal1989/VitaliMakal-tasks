@@ -90,6 +90,7 @@ const config: webpack.Configuration = {
 		})
 	],
 	devServer: {
+		historyApiFallback: true,
 		contentBase: resolve('./build'),
 		hot: true,
 		open: true,

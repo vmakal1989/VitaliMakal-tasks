@@ -13,7 +13,7 @@ const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
 				usersId.map((userId, index) => {
 					if(index < 4 ) return (
 						<div className="avatars__item">
-							<ProfileIcon key={index}
+							<ProfileIcon key={userId}
 										 classType={"task"}
 										 userId={userId}/>
 						</div>
@@ -29,7 +29,7 @@ const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
 								{usersId.map((userId, index) => {
 									if(index >= 4 ) return (
 										<div className="avatars__hidden-item">
-											<ProfileIcon key={index}
+											<ProfileIcon key={userId}
 														 classType={"task"}
 														 userId={userId}/>
 										</div>
