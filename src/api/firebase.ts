@@ -23,9 +23,19 @@ export const firebaseUserAPI = {
 }
 
 export const firebaseTaskAPI = {
-	addTask(name: string, body: string, status: string, importance: string, users: Array<string>) {
-		return firebase.database().ref(`tasks`).push({name, body, status, importance, users})
+	addTask(name: string, description: string, status: string, importance: string, users: Array<string>) {
+		return firebase.database().ref(`tasks`).push({name, description, status, importance, users})
 	},
+	editTask(id: string, name: string, description: string, status: string, importance: string, users: Array<string>) {
+		let updateData = {id, name, description, status, importance, users}
+		let updates = {};
+		updates[`tasks/${id}`] = updateData;
+		return firebase.database().ref().update(updates);
+	},
+	removeTask(id) {
+		return firebase.database().ref(`tasks/${id}`).remove()
+	}
+	,
 	getTasks() {
 		return firebase.database().ref(`tasks`).once('value')
 	}

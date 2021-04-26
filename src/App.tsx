@@ -10,6 +10,7 @@ import app from "src/store/App"
 import { observer} from "mobx-react"
 import user from "src/store/User"
 import task from "./store/Task"
+import Preloader from "src/components/common/Preloader"
 
 const App = observer((): JSX.Element =>  {
 	React.useEffect(()=> {
@@ -18,7 +19,7 @@ const App = observer((): JSX.Element =>  {
 		task.getTasks()
     },[])
 	
-	if(app.state.isFetching) return <div className='app'>Preloader</div>
+	if(app.state.isFetching) return <Preloader style={"app__preloader"}/>
 
 	return (
 		<div className='app'>

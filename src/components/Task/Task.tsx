@@ -11,7 +11,7 @@ type Props = {
 	statusInfoType: "In progress" | "Pending" | "Completed" | 'Canceled'
 	importanceInfoType: "Minor" | "Critical" | "Normal"
 	taskId: number
-	usersId: Array<number>
+	usersId: Array<string>
 	haze?: "haze"
 }
 

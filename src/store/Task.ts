@@ -12,7 +12,7 @@ class Task {
 			},
 			{
 				label: "Importance",
-				options: ["Minor", "Critical", "Normal"]
+				options: ["Minor", "Normal", "Critical"]
 			},
 			{
 				label:"Delete"
@@ -30,45 +30,37 @@ class Task {
 		let users = [executor ? executor : user.state.currentUser.id, user.state.currentUser.id]
 		await firebaseTaskAPI.addTask(name, description, status, importance, users)
 			.then(response => {
-				this.state.tasks.push({name, description, status, importance, users})
+				runInAction(()=> this.state.tasks.push({id: response.key,name, description, status, importance, users})) 
 			})
 
 	}
-	removeTask(id) {
-		this.state.tasks = this.state.tasks.filter(task => task.id != id)
+	changeTask(taskId, type, option?) {
+		let {id, name, description, status, importance, users} = this.state.tasks.filter(task => taskId === task.id)[0]
+		switch(type) {
+			case "Delete":
+				firebaseTaskAPI.removeTask(id)
+				this.state.tasks = this.state.tasks.filter(task => task.id != id)
+				break
+			case "Importance":
+				firebaseTaskAPI.editTask(id, name, description, status, importance = option, users)
+				this.state.tasks.map(task => task.id === id ? task.importance = option : task)
+				break
+			case "Status":
+				firebaseTaskAPI.editTask(id, name, description, status = option, importance, users)
+				this.state.tasks.map(task => task.id === id ? task.status = option : task)
+				break
+			default: null
+		}
 	}
 	async getTasks() {
 		runInAction(()=> this.state.isFetching = true)
 		await firebaseTaskAPI.getTasks()
 			.then(response => {
 				for(let key in response.val()) {
-					this.state.tasks.push({id: key, ...response.val()[key]})
+					runInAction(()=> this.state.tasks.push({id: key, ...response.val()[key]})) 
 				}
 				runInAction(()=> this.state.isFetching = false)
 			})
-	}
-	changeTask(id, type, option?) {
-		if(type === "Delete") {
-			this.removeTask(id)
-		} else if(type === "Importance") {
-			this.changeImportance(id, option)
-		} else if(type === "Status") {
-			this.changeStatus(id, option)
-		}
-	}
-	changeStatus(id, option) {
-		this.state.tasks.forEach(task => {
-			if(task.id === id){
-				task.status = option
-			}
-		})
-	}
-	changeImportance(id, option) {
-		this.state.tasks.forEach(task => {
-			if(task.id === id){
-				task.importance = option
-			}
-		})
 	}
 	getActiveTasks() {
 		return this.state.tasks.filter((el) => el.status === 'Pending' || el.status === "In progress")

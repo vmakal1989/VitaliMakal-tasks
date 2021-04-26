@@ -6,6 +6,7 @@ import TaskForm from "src/components/Forms/TaskForm"
 import {observer, } from "mobx-react"
 import {runInAction} from "mobx"
 import taskForm from "src/store/TaskForm"
+import Preloader from "src/components/common/Preloader"
 
 const Main: React.FC = observer((): JSX.Element  => {
 	const handleSubmit = (): void => {
@@ -13,8 +14,6 @@ const Main: React.FC = observer((): JSX.Element  => {
 	}
 	let tasksCount: number = task.state.tasks.length
 
-	if(task.state.isFetching) return <div>Preloader</div>
-	
 	return (
 		<div className="main">
 			<div className="main__header">
@@ -22,11 +21,17 @@ const Main: React.FC = observer((): JSX.Element  => {
 				<Button classType={"main__btn"} element={"Add new"} onClick={handleSubmit}/>
 				{ task.state.renderTaskForm && <TaskForm  form={taskForm} exitModalWindow={handleSubmit}/> }
 			</div>
-			{task.state.sections.map((el, index)=> {
-				return <TaskList key={index}
-								 completed={el === "Completed"}
-								 sectionName={el}/>
-			})}
+			{
+				task.state.isFetching
+				?
+				<Preloader style={"main__preloader"}/>
+				:
+				task.state.sections.map((el, index)=> {
+					return <TaskList key={index}
+										completed={el === "Completed"}
+										sectionName={el}/>
+				})
+			}
 		</div>
 	)
 })
