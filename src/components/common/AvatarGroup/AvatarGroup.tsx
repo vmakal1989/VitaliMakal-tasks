@@ -3,7 +3,7 @@ import ProfileIcon from "src/components/common/ProfileIcon"
 import classNames from "classnames"
 
 type Props = {
-	usersId: Array<number>
+	usersId: Array<string>
 }
 
 const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {

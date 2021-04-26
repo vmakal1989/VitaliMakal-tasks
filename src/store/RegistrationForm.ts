@@ -1,6 +1,10 @@
 import { Form } from "mobx-react-form"
 import dvr from "mobx-react-form/lib/validators/DVR"
 import validatorjs from "validatorjs"
+import user from "src/store/User"
+import {firebaseUserAPI} from "src/api/firebase"
+import app from "src/store/App"
+import {runInAction} from "mobx"
 
 class RegistrationForm extends Form {
 	plugins() {
@@ -46,17 +50,23 @@ class RegistrationForm extends Form {
 			]
 		};
 	}
-
 	hooks() {
 		return {
-			onSuccess(form) {
-			    console.log(form.values())
-			},
-			onError(form) {
-				alert("Form has errors!");
-				console.log("All form errors", form.errors())
+			async onSuccess(form) {
+				runInAction(()=> app.state.formIsFetching = true)
+				let {email, firstName, lastName, password} = form.values()
+				await firebaseUserAPI.createAccount(email, password)
+					.then(data => {
+						user.createUser(data.user.uid,email, firstName, lastName )
+						form.clear()
+						runInAction(()=> app.state.formIsFetching = false)
+					})
+					.catch(error => {
+						form.invalidate(error.message)
+						runInAction(()=> app.state.formIsFetching = false)
+					})
 			}
-		};
+		}
 	}
 }
 

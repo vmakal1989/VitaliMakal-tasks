@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background: #fff;
+    box-shadow: 0 4px 20px #8CA4D8;
     &__title{
         text-align: center;
         width: 100%;
@@ -45,7 +46,7 @@
         display: flex;
         justify-content: center;
       }
-      &__btn-success, &__btn-cancel {
+      &__btn-success, &__btn-link, &__btn-cancel {
         margin: 0 20px;
         width: 139px;
         height: 34px;
@@ -54,5 +55,14 @@
         border: none;
         cursor: pointer;
         @include font_options('Poppins', normal, 16px, normal, 9px, 0, #fff);
+      }
+      &__btn-link {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          opacity: .9;
+        }
       }
 }

@@ -1,5 +1,5 @@
-import {makeAutoObservable} from "mobx"
-import {tasks} from "src/db/tasks"
+import {makeAutoObservable, runInAction} from "mobx"
+import {firebaseTaskAPI} from "src/api/firebase"
 import user from "./User"
 
 class Task {
@@ -18,19 +18,34 @@ class Task {
 				label:"Delete"
 			}
 		],
-		tasks: tasks,
-		renderTaskForm: false
+		tasks: [],
+		renderTaskForm: false,
+		isFetching: false
 	}
 	constructor() {
 		makeAutoObservable(this)
 	}
-	addTask(taskData) {
-		let {name, description, status, importance} = taskData
-		let userId = user.state.users.filter(user => user.name === taskData.executor)[0].id
-		this.state.tasks.push({id: 35,name, description, status, importance, users: [userId]})
+	async addTask(taskData) {
+		let {name, description, status, importance, executor} = taskData
+		let users = [executor ? executor : user.state.currentUser.id, user.state.currentUser.id]
+		await firebaseTaskAPI.addTask(name, description, status, importance, users)
+			.then(response => {
+				this.state.tasks.push({name, description, status, importance, users})
+			})
+
 	}
 	removeTask(id) {
 		this.state.tasks = this.state.tasks.filter(task => task.id != id)
+	}
+	async getTasks() {
+		runInAction(()=> this.state.isFetching = true)
+		await firebaseTaskAPI.getTasks()
+			.then(response => {
+				for(let key in response.val()) {
+					this.state.tasks.push({id: key, ...response.val()[key]})
+				}
+				runInAction(()=> this.state.isFetching = false)
+			})
 	}
 	changeTask(id, type, option?) {
 		if(type === "Delete") {

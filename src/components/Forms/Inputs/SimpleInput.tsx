@@ -6,7 +6,11 @@ type Props = {
 	classTypes: ClassType
 	type: "text" | "textarea" | "select" | "email" | "password"
 	placeholder?: string
-	options?: Array<string>
+	options?: Array<Option>
+}
+export type Option = {
+	label: string
+	value: string
 }
 export type ClassType = {
 	block: string
@@ -24,10 +28,10 @@ const SimpleInput: React.FC<Props> = observer(({ field, classTypes, type, placeh
 			break
 		case "select":
 			fieldType = <select {...field.bind({ type })}className={classTypes.field}>
-							{ options && options.map((el, index) => {
-								return <option key={index} value={el}>{el}</option>
-							}) }
-						</select>
+				{ options && options.map((el, index) => {
+					return <option key={index} value={el.value}>{el.label}</option>
+				}) }
+			</select>
 			break
 		default:
 			fieldType = <input {...field.bind({ type, placeholder }) } className={classTypes.field}/>

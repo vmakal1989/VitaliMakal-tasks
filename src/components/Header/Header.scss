@@ -3,4 +3,14 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 10px 0;
+  &__link-out {
+    width: 20px;
+    height: 20px;
+    background: url("src/assets/images/svg/logout.svg") no-repeat center;
+    text-decoration: none;
+    margin: 0 10px 0 auto;
+    &:hover {
+      opacity: .9;
+    }
+  }
 }

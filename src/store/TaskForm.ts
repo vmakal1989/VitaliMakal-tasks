@@ -3,6 +3,7 @@ import dvr from "mobx-react-form/lib/validators/DVR"
 import validatorjs from "validatorjs"
 import task from "src/store/Task"
 import user from "src/store/User"
+import {runInAction} from "mobx"
 
 class TaskForm extends Form {
 	plugins() {
@@ -38,11 +39,8 @@ class TaskForm extends Form {
 				},
 				{
 					name: "executor",
-					label: "Executor",
-					value: user.state.users.filter((el, index) => index === 0)[0].name
-				}
-
-
+					label: "Executor"
+ 				}
 			]
 		};
 	}
@@ -50,13 +48,10 @@ class TaskForm extends Form {
 	hooks() {
 		return {
 			onSuccess(form) {
-				task.state.renderTaskForm = !task.state.renderTaskForm
+				runInAction(()=> task.state.renderTaskForm = !task.state.renderTaskForm)
 				task.addTask(form.values())
-				form.reset()
-			},
-			onError(form) {
-				alert("Form has errors!");
-				console.log("All form errors", form.errors())
+				form.$('name').clear()
+				form.$('description').clear()
 			}
 		};
 	}
@@ -64,7 +59,3 @@ class TaskForm extends Form {
 
 
 export default new TaskForm()
-
-export type TaskFormType = {
-	form: typeof TaskForm
-}

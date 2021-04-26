@@ -1,15 +1,16 @@
 
 type Task = {
-	id: number
+	id: string
 	name: string
 	description: string
 	status: 'Pending' | 'In progress' | 'Completed' | 'Canceled'
 	importance: 'Minor' | 'Normal' | 'Critical'
-	users: Array<number>
+	users: Array<string>
 }
 
 type User = {
-	id: number
-	name: string
-	photoURL: string
+	id: string
+	firstName: string
+	lastName: string
+	email: string
 }

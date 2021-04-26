@@ -4,27 +4,31 @@ import SimpleInput, {ClassType} from 'src/components/Forms/Inputs/SimpleInput'
 import Button from 'src/components/common/Button'
 import task from "src/store/Task"
 import user from "src/store/User"
+import {Option} from "src/components/Forms/Inputs/SimpleInput"
 
 type Props = {
 	exitModalWindow: () => void
 	form: any
 }
 
-const getOptionsArray = (key: string, task: any): Array<string> => {
-	let optionsArr: Array<string> = []
+const getOptionsArray = (key: string, task: any): Array<Option> => {
+	let optionsArr: Array<Option> = []
 	task.state.fields.map(field => {
 		if( field.label === key) 
-			field.options.map(option => optionsArr.push(option)) 
+			field.options.map(option => optionsArr.push({label: option, value: option})) 
 	})
 	return optionsArr
 }
 
+
 const TaskForm: React.FC<Props> = observer(({ form, exitModalWindow }): JSX.Element => {
 
-	let statusOptions: Array<string> = getOptionsArray("Status", task)
-	let importanceOptions: Array<string> = getOptionsArray("Importance", task)
-	let usersOptions: Array<string> = user.state.users.map(el => el.name)
-
+	let statusOptions: Array<Option> = getOptionsArray("Status", task)
+	let importanceOptions: Array<Option> = getOptionsArray("Importance", task)
+	let	usersOptions: Array<Option> = user.state.users.map(user => {
+		return {label: `${user.firstName} ${user.lastName}`, value: user.id}
+	})
+	
 	const classTypes: ClassType = {
 		block: "task-form__item form__item",
 		label: "task-form__label form__label",
@@ -55,9 +59,9 @@ const TaskForm: React.FC<Props> = observer(({ form, exitModalWindow }): JSX.Elem
 							 options={usersOptions}/>
 			</div>
 			<div className="task-form__btn-group form__btn-group">
-				<Button text={"Submit"} classType={"task-form__btn-success form__btn-success"} 
+				<Button element={"Submit"} classType={"task-form__btn-success form__btn-success"} 
 					onClick={form.onSubmit} />
-				<Button text={"Cancel"} classType={"task-form__btn-cancel form__btn-cancel"} 
+				<Button element={"Cancel"} classType={"task-form__btn-cancel form__btn-cancel"} 
 					onClick={exitModalWindow} />
 			</div>
 			<p className="task-form__error form__error">{form.error}</p>

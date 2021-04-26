@@ -3,15 +3,16 @@ import classNames from "classnames"
 
 type Props = {
 	classType: string
-	text: string
+	element: string | JSX.Element
 	onClick: () => void
+	disabled?: boolean
 }
 
-const Button: React.FC<Props> = ({classType, text, onClick}): JSX.Element => {
+const Button: React.FC<Props> = ({classType, element, onClick, disabled=false}): JSX.Element => {
 	return (
-		<button className={classNames("btn", classType)} onClick={onClick}>
+		<button className={classNames("btn", classType)} onClick={onClick} disabled={disabled}>
 			<span>
-				{text}
+				{element}
 			</span>
 		</button>
 	)

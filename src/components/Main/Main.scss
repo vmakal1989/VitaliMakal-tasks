@@ -1,6 +1,7 @@
 @import "src/styles/mixins/font";
 .main {
   max-width: 920px;
+  min-height: 470px;
   padding: 20px 15px;
   position: relative;
   &__header {

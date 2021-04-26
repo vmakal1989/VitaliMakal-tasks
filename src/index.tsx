@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import App from 'src/App'
 import './styles'
 import {BrowserRouter} from "react-router-dom"
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 
 const  firebaseConfig = {
 	apiKey: "AIzaSyDQtGPtMwnhfozW-9D4MqpHly4fbuBBT8Y",
