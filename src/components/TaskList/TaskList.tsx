@@ -17,7 +17,7 @@ const TaskList: React.FC<Props> = observer(({sectionName}): JSX.Element => {
 	}
 	return (
 		<div className="main__list">
-			<div className={classNames("main__list-title", sectionName === "Completed" ? "completed" : '')}>
+			<div className={classNames("main__list-title", sectionName === "Completed" ? "completed-img" : '')}>
 				{sectionName}
 			</div>
 			{

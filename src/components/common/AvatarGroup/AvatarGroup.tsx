@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ProfileIcon from "src/components/common/ProfileIcon"
 import classNames from "classnames"
+import {NavLink} from "react-router-dom"
 
 type Props = {
 	usersId: Array<string>
@@ -13,9 +14,11 @@ const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
 				usersId.map((userId, index) => {
 					if(index < 4 ) return (
 						<div key={index} className="avatars__item">
-							<ProfileIcon key={userId}
-										 classType={"task"}
-										 userId={userId}/>
+							<NavLink to={`/users/${userId}`}>
+								<ProfileIcon key={userId}
+											 classType={"task"}
+											 userId={userId}/>
+							</NavLink>
 						</div>
 					)
 				})
@@ -29,9 +32,11 @@ const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
 								{usersId.map((userId, index) => {
 									if(index >= 4 ) return (
 										<div key={index} className="avatars__hidden-item">
-											<ProfileIcon key={userId}
-														 classType={"task"}
-														 userId={userId}/>
+											<NavLink to={`/users/${userId}`}>
+												<ProfileIcon key={userId}
+															 classType={"task"}
+															 userId={userId}/>
+											</NavLink>
 										</div>
 									)
 								})}

@@ -35,6 +35,9 @@ export const firebaseTaskAPI = {
 	removeTask(id) {
 		return firebase.database().ref(`tasks/${id}`).remove()
 	},
+	getTask(id) {
+		return firebase.database().ref(`tasks/${id}`).once('value')
+	},
 	getTasks() {
 		return firebase.database().ref(`tasks`).once('value')
 	}

@@ -11,15 +11,13 @@ class Notice {
 	}
 	async addNotice(data) {
 		let response
-		let executor = await firebaseUserAPI.getUserProfile(data.executor)
-			.then(response => response)
 		switch (data.event) {
 			case "UpdateProfile":
 			 	response = await firebaseNoticeAPI.addNotice({type: "UpdateProfile", recipient: data.id})
 				break
 			case "CreateTask":
 				response = await firebaseNoticeAPI.addNotice({type: "CreateTask", author: user.state.currentUser,
-					 executor: {id: data.executor, ...executor.val()}, task: data.task ,recipient: "all"})
+					 executor: data.executor, task: data.task ,recipient: "all"})
 				break
 			case "UpdateTask":
 				response = await firebaseNoticeAPI.addNotice({type: "UpdateTask", author: user.state.currentUser,
@@ -35,7 +33,7 @@ class Notice {
 				break
 		}
 		runInAction(()=> this.state.notices.unshift({id: response.key, type: data.event, author: user.state.currentUser,
-			task: data.task, executor: {id: data.executor, ...executor.val()}, recipient: data.id,  keyWord: data.keyWord}))
+			task: data.task, executor: data.executor, recipient: data.id,  keyWord: data.keyWord}))
 	}
 	getNotices() {
 		this.state.notices = []

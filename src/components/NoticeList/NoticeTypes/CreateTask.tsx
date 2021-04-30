@@ -13,7 +13,9 @@ export const CreateTask: React.FC<Props> = ({author,executor, task}): JSX.Elemen
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
-				<ProfileIcon classType={"notice"} />
+				<NavLink to={`/users/${author.id}`}>
+					<ProfileIcon classType={"notice"} />
+				</NavLink>
 			</div>
 			<div>
 				<div className="notice__name">

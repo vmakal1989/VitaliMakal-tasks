@@ -5,6 +5,7 @@ import AvatarGroup from "src/components/common/AvatarGroup"
 import DotsMenu from "src/components/common/DotsMenu"
 import TaskName from "./TaskName"
 import classNames from "classnames"
+import {NavLink} from "react-router-dom"
 
 type Props = {
 	text: string
@@ -18,7 +19,9 @@ type Props = {
 const Task: React.FC<Props> = ({text, statusInfoType, importanceInfoType, taskId, usersId, haze}): JSX.Element => {
 	return (
 		<div className={classNames("task", haze && haze)}>
-			<TaskName description={text} />
+			<NavLink to={`/tasks/${taskId}`}>
+				<TaskName description={text} />
+			</NavLink>
 			<StatusInformation type={statusInfoType}/>
 			<ImportanceInfo type={importanceInfoType} />
 			<AvatarGroup usersId={usersId}/>

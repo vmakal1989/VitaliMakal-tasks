@@ -13,7 +13,9 @@ export const LeaveComment: React.FC<Props> = ({userId, taskId, body}): JSX.Eleme
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
-				<ProfileIcon classType={"notice"} />
+				<NavLink to={`/users/${userId}`}>
+					<ProfileIcon classType={"notice"} />
+				</NavLink>
 			</div>
 			<div>
 				<div className="notice__name">

@@ -13,7 +13,9 @@ export const RemoveTask: React.FC<Props> = ({author, task}): JSX.Element => {
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
-				<ProfileIcon classType={"notice"} />
+				<NavLink to={`/users/${author.id}`}>
+					<ProfileIcon classType={"notice"} />
+				</NavLink>
 			</div>
 			<div>
 				<div className="notice__name">

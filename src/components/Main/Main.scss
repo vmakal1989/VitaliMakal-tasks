@@ -1,6 +1,6 @@
 @import "src/styles/mixins/font";
 .main {
-  max-width: 920px;
+  width: 920px;
   min-height: 470px;
   padding: 20px 15px;
   position: relative;
@@ -23,7 +23,7 @@
     padding-right: 87px;
     display: inline-block;
   }
-  .completed {
+  .completed-img {
     background: url("src/assets/images/svg/inactive.svg") no-repeat right;
   }
   &__btn {

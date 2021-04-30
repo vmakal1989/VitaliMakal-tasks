@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from "mobx"
-import {firebaseTaskAPI} from "src/api/firebase"
+import {firebaseTaskAPI, firebaseUserAPI} from "src/api/firebase"
 import user from "./user"
 import notice from "./notice"
 
@@ -19,6 +19,7 @@ class Task {
 				label:"Remove"
 			}
 		],
+		task: null,
 		tasks: [],
 		renderTaskForm: false,
 		isFetching: false
@@ -28,13 +29,15 @@ class Task {
 	}
 	async addTask(taskData) {
 		let {name, description, status, importance, executor} = taskData
-		let users = [executor ? executor : user.state.currentUser.id, user.state.currentUser.id]
-		await firebaseTaskAPI.addTask(name, description, status, importance, users)
+		await firebaseUserAPI.getUserProfile(executor)
 			.then(response => {
-				runInAction(()=> this.state.tasks.push({id: response.key,name, description, status, importance, users}))
-				notice.addNotice({event: "CreateTask", task: {id: response.key, name}, executor: users[0]})
+				let users = [{executor, ...response.val()}, user.state.currentUser]
+				firebaseTaskAPI.addTask(name, description, status, importance, users)
+					.then(response => {
+						runInAction(()=> this.state.tasks.push({id: response.key,name, description, status, importance, users}))
+						notice.addNotice({event: "CreateTask", task: {id: response.key, name}, executor: users[0]})
+					})
 			})
-
 	}
 	async changeTask(taskId, type, option?) {
 		let {id, name, description, status, importance, users} = this.state.tasks.filter(task => taskId === task.id)[0]
@@ -56,6 +59,17 @@ class Task {
 				break
 			default: null
 		}
+	}
+	async getTask(id) {
+		runInAction(()=> this.state.isFetching = true)
+		await firebaseTaskAPI.getTask(id)
+			.then(response => {
+				response.val()
+					? this.state.task = {...response.val()}
+					: this.state.task = "404"
+				runInAction(()=> this.state.isFetching = false)
+			})
+
 	}
 	async getTasks() {
 		runInAction(()=> this.state.isFetching = true)

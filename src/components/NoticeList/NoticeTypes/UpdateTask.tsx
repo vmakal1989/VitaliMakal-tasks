@@ -3,6 +3,8 @@ import ProfileIcon from "src/components/common/ProfileIcon"
 import {NavLink} from "react-router-dom"
 import notice from "src/store/notice"
 import {Task, User} from "src/types/types"
+import classNames from "classnames";
+import { styles } from "src/helpers/withStyles/colorOptions"
 
 type Props = {
 	author: User
@@ -14,7 +16,9 @@ export const UpdateTask: React.FC<Props> = ({author, task, keyWord}): JSX.Elemen
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
-				<ProfileIcon classType={"notice"} />
+				<NavLink to={`/users/${author.id}`}>
+					<ProfileIcon classType={"notice"} />
+				</NavLink>
 			</div>
 			<div>
 				<div className="notice__name">
@@ -23,8 +27,8 @@ export const UpdateTask: React.FC<Props> = ({author, task, keyWord}): JSX.Elemen
 					</NavLink>
 				</div>
 				<div className="notice__text">
-					Changed <span className="notice__text_blue bold">{keyWord[0]} </span>
-					to <span className="notice__text_green bold" >{keyWord[1]} </span>in
+					Changed <span className="notice__text bold">{keyWord[0]} </span>
+					to <span className={classNames("notice__text bold", styles[keyWord[1]])} >{keyWord[1]} </span>in
 					<NavLink to={`/tasks/${task.id}`} className="notice__text-link notice__text_yellow bold">
 						&nbsp;{task.name}
 					</NavLink>

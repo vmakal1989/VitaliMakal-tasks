@@ -87,8 +87,12 @@ const config: webpack.Configuration = {
 			template: resolve('./public/index.html'),
 			inject: 'body',
 			scriptLoading: 'blocking',
+		}),
+		new webpack.DefinePlugin({
+			'process.env.PUBLIC_URL': JSON.stringify('')
 		})
 	],
+
 	devServer: {
 		historyApiFallback: true,
 		contentBase: resolve('./build'),
