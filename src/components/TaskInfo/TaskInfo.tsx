@@ -3,8 +3,10 @@ import {NavLink, RouteComponentProps, withRouter } from "react-router-dom"
 import {observer} from "mobx-react"
 import task from "src/store/task"
 import Preloader from "src/components/common/Preloader"
-import classNames from "classnames";
+import classNames from "classnames"
 import { styles } from "src/helpers/withStyles/colorOptions"
+import CommentForm from "src/components/Forms/CommentForm"
+import CommentList from "src/components/CommentList"
 
 type PathParamsType = {
 	id: string
@@ -13,9 +15,7 @@ const TaskInfo: React.FC<RouteComponentProps<PathParamsType>> = observer(({match
 	React.useEffect(()=> {
 		const { pathname } = location
 		task.getTask(match.params.id)
-	}, [location.pathname])
-
-	let notFound = "hello"
+	},[location.pathname])
 
 
 	if(task.state.isFetching || !task.state.task) return <Preloader style={"task-info__preloader"} />
@@ -67,6 +67,13 @@ const TaskInfo: React.FC<RouteComponentProps<PathParamsType>> = observer(({match
                                     </NavLink>
                                 </span>
 							</div>
+						</div>
+						<div className="task-info__comment">
+							<div className="task-info__comment-label">
+								Comments.
+							</div>
+							<CommentForm style={"task-info__form"} task={task.state.task}/>
+							<CommentList style={"task-info"} taskId={task.state.task.id}/>
 						</div>
 					</>
 			}

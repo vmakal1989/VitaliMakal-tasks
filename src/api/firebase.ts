@@ -51,3 +51,12 @@ export const firebaseNoticeAPI = {
 		return firebase.database().ref(`notices`).once('value')
 	}
 }
+
+export const firebaseCommentAPI = {
+	addComment(comment) {
+		return firebase.database().ref(`comments/${comment.taskId}`).push(comment)
+	},
+	getComment(taskId) {
+		return firebase.database().ref(`comments/${taskId}`).once('value')
+	}
+}

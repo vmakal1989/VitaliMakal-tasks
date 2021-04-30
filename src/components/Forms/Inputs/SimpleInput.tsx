@@ -24,7 +24,7 @@ const SimpleInput: React.FC<Props> = observer(({ field, classTypes, type, placeh
 
 	switch(type) {
 		case "textarea":
-			fieldType = <textarea {...field.bind({ type, placeholder }) } className={classTypes.field} />
+			fieldType = <textarea {...field.bind({ type, placeholder }) } className={classTypes.field}/>
 			break
 		case "select":
 			fieldType = <select {...field.bind({ type })}className={classTypes.field}>

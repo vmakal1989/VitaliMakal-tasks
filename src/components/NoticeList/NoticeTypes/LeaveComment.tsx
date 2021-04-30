@@ -1,28 +1,33 @@
 import React from "react"
 import ProfileIcon from "src/components/common/ProfileIcon"
 import {NavLink} from "react-router-dom"
+import {Task, User} from "src/types/types"
 
 type Props = {
-	userId: string
-	taskId: string
-	body?: string
+	author: User
+	task: Task
+	body: string
 }
 
-export const LeaveComment: React.FC<Props> = ({userId, taskId, body}): JSX.Element => {
-	let userName = "Vitali Makal"
+export const LeaveComment: React.FC<Props> = ({author, task, body}): JSX.Element => {
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
-				<NavLink to={`/users/${userId}`}>
+				<NavLink to={`/users/${author.id}`}>
 					<ProfileIcon classType={"notice"} />
 				</NavLink>
 			</div>
 			<div>
 				<div className="notice__name">
-					{userName}
+					<NavLink to={`/users/${author.id}`}>
+						{`${author.firstName} ${author.lastName}`}
+					</NavLink>
 				</div>
 				<div className="notice__text">
-					Comment on your task UI Design
+					Comment on task&nbsp;
+					<NavLink to={`/tasks/${task.id}`} className="notice__text_brilliant bold">
+							{task.name}
+					</NavLink>
 				</div>
 				<div className="notice__comment">
 					{body}

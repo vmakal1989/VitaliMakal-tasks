@@ -1,0 +1,44 @@
+@import "src/styles/mixins/font";
+.comment {
+  &__item {
+    display: flex;
+    margin-bottom: 25px;
+  }
+ &__name {
+   width: 100%;
+   padding: 5px 0;
+   @include font_options("Montserrat", normal, 12px, 500, 15px, 0, #24272C);
+   & a {
+     text-decoration: none;
+     color: #24272C;
+     &:hover {
+       opacity: .9;
+     }
+   }
+ }
+ &__avatar {
+   min-width: 40px;
+   max-width: 40px;
+   height: 100%;
+   margin-right: 15px;
+   align-self: stretch;
+ }
+ &__user-avatar {
+   border: double 2px transparent;
+   border-radius:50%;
+   background-image: linear-gradient(white, white),
+   radial-gradient(circle at top, rgba(64, 198, 213, 1),rgba(58, 145, 193, 1));
+   background-origin: border-box;
+   background-clip: content-box, border-box;
+   text-align: center;
+ }
+ &__text {
+   width: 100%;
+   padding: 5px 0;
+   white-space: pre-line;
+   @include font_options("Poppins", normal, 10px, 400, 15px, 0, #555555);
+   & a {
+     text-decoration: none;
+   }
+ }
+}

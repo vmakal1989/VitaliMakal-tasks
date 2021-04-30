@@ -32,8 +32,8 @@ const NoticeList: React.FC = observer((): JSX.Element => {
 												  recipient={notice.recipient}/>
 						case "LeaveComment":
 							return <LeaveComment key={notice.id}
-												 userId={notice.userId}
-												 taskId={notice.taskId}
+												 author={notice.author}
+												 task={notice.task}
 												 body={notice.body}/>
 						default: break
 					}

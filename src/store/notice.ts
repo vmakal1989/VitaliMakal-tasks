@@ -24,8 +24,9 @@ class Notice {
 					task: data.task,keyWord: data.keyWord, recipient: "all"})
 				break
 			case "LeaveComment":
+				console.log("yes")
 				response = await firebaseNoticeAPI.addNotice({type: "LeaveComment", author: user.state.currentUser,
-					taskId: data.taskId, recipient: "all"})
+					task: data.task, body: data.body, recipient: "all"})
 				break
 			case "RemoveTask":
 				response = await firebaseNoticeAPI.addNotice({type: "RemoveTask", author: user.state.currentUser,

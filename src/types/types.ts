@@ -1,4 +1,3 @@
-
 export type Task = {
 	id: string
 	name: string
@@ -19,3 +18,11 @@ export type notice = {
 	id: string
 	recipient: string
 }
+
+export type CommentType = {
+	id: string
+	author: User
+	body: string
+	taskId: string
+}
+
