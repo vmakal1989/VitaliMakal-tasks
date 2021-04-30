@@ -1,5 +1,5 @@
 
-type Task = {
+export type Task = {
 	id: string
 	name: string
 	description: string
@@ -8,9 +8,14 @@ type Task = {
 	users: Array<string>
 }
 
-type User = {
+export type User = {
 	id: string
 	firstName: string
 	lastName: string
 	email: string
+}
+
+export type notice = {
+	id: string
+	recipient: string
 }

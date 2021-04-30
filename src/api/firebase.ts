@@ -14,7 +14,7 @@ export const firebaseUserAPI = {
 	setUserProfile(userId: string, email: string, firstName: string, lastName: string) {
 		return firebase.database().ref(`users/${userId}`).set({email, firstName, lastName})
 	},
-	getUserProfile(userId) {
+	getUserProfile(userId: string) {
 		return firebase.database().ref(`users/${userId}`).once('value')
 	},
 	getUsers() {
@@ -34,9 +34,17 @@ export const firebaseTaskAPI = {
 	},
 	removeTask(id) {
 		return firebase.database().ref(`tasks/${id}`).remove()
-	}
-	,
+	},
 	getTasks() {
 		return firebase.database().ref(`tasks`).once('value')
+	}
+}
+
+export const firebaseNoticeAPI = {
+	addNotice(notice) {
+		return firebase.database().ref(`notices`).push(notice)
+	},
+	getNotices() {
+		return firebase.database().ref(`notices`).once('value')
 	}
 }
