@@ -4,7 +4,7 @@ type Props = {
 	description: string
 }
 
-const TaskDescription: React.FC<Props> = ({description}): JSX.Element => {
+const TaskName: React.FC<Props> = ({description}): JSX.Element => {
 	return (
 		<div className="task__text">
 			{description}
@@ -12,4 +12,4 @@ const TaskDescription: React.FC<Props> = ({description}): JSX.Element => {
 	)
 }
 
-export default TaskDescription
+export default TaskName

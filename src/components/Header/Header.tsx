@@ -3,7 +3,7 @@ import SearchField from "src/components/Forms/SearchField"
 import Notification from "src/components/common/Notification"
 import ProfileIcon from "src/components/common/ProfileIcon"
 import { NavLink } from 'react-router-dom'
-import user from "src/store/User"
+import user from "src/store/user"
 
 const Header = (): JSX.Element => {
 	return (

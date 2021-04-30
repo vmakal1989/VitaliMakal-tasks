@@ -4,7 +4,7 @@ import {ClassType} from "src/components/Forms/Inputs/SimpleInput"
 import SimpleInput from "src/components/Forms/Inputs/SimpleInput"
 import { observer } from "mobx-react"
 import { NavLink } from "react-router-dom"
-import app from 'src/store/App'
+import app from 'src/store/app'
 import {Redirect} from "react-router-dom"
 import spinner from "src/assets/images/svg/spinner.svg"
 

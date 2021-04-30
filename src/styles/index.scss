@@ -3,6 +3,9 @@ body {
   height: 100%;
   background: linear-gradient(100deg, #EDC1D3, #91BDEC 100%);
 }
+a:hover {
+  opacity: .9;
+}
 .wrapper {
   margin: 50px auto;
   max-width: 1374px;
@@ -10,6 +13,9 @@ body {
   background: #FFFFFF;
   box-shadow: 0 4px 40px #8CA4D8;
   border-radius: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .scarlet {
   color: #F3477A;
@@ -18,4 +24,10 @@ body {
   width: 200px;
   height: 200px;
   margin: 100px auto;
+}
+.nowrap {
+  flex-wrap: nowrap;
+}
+.bold {
+  font-weight: bold;
 }

@@ -1,6 +1,6 @@
 import React from "react"
 import defaultAvatar from "src/assets/images/defaultProfile.png"
-import user from "src/store/User"
+import user from "src/store/user"
 
 type Props = {
 	classType: string

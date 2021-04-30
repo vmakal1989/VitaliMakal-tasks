@@ -1,5 +1,5 @@
 import React  from "react"
-import task from "src/store/Task"
+import task from "src/store/task"
 import DotsMenuItem from "./DotsMenuItem";
 
 type Props = {

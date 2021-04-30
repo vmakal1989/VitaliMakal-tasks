@@ -2,8 +2,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import SimpleInput, {ClassType} from 'src/components/Forms/Inputs/SimpleInput'
 import Button from 'src/components/common/Button'
-import task from "src/store/Task"
-import user from "src/store/User"
+import task from "src/store/task"
+import user from "src/store/user"
 import {Option} from "src/components/Forms/Inputs/SimpleInput"
 
 type Props = {
