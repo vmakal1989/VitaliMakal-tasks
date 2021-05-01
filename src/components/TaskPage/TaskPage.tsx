@@ -11,7 +11,7 @@ import CommentList from "src/components/CommentList"
 type PathParamsType = {
 	id: string
 }
-const TaskInfo: React.FC<RouteComponentProps<PathParamsType>> = observer(({match}): JSX.Element => {
+const TaskPage: React.FC<RouteComponentProps<PathParamsType>> = observer(({match}): JSX.Element => {
 	React.useEffect(()=> {
 		const { pathname } = location
 		task.getTask(match.params.id)
@@ -81,4 +81,4 @@ const TaskInfo: React.FC<RouteComponentProps<PathParamsType>> = observer(({match
 	)
 })
 
-export default withRouter(TaskInfo)
+export default withRouter(TaskPage)

@@ -13,7 +13,7 @@ import task from "./store/task"
 import Preloader from "src/components/common/Preloader"
 import Aside from "./components/Aside"
 import notice from "./store/notice"
-import TaskInfo from "./components/TaskInfo"
+import TaskPage from "./components/TaskPage"
 import { withRouter } from "react-router-dom"
 
 const App = observer((): JSX.Element =>  {
@@ -35,7 +35,7 @@ const App = observer((): JSX.Element =>  {
 					<Header/>
 					<div className="main">
 						<Route exact path="/" component={Main}/>
-						<Route path="/tasks/:id" component={TaskInfo}/>
+						<Route path="/tasks/:id" component={TaskPage}/>
 					</div>
 					<Aside/>
 				</div>

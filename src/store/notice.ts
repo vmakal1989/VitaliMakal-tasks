@@ -24,7 +24,6 @@ class Notice {
 					task: data.task,keyWord: data.keyWord, recipient: "all"})
 				break
 			case "LeaveComment":
-				console.log("yes")
 				response = await firebaseNoticeAPI.addNotice({type: "LeaveComment", author: user.state.currentUser,
 					task: data.task, body: data.body, recipient: "all"})
 				break
@@ -34,7 +33,7 @@ class Notice {
 				break
 		}
 		runInAction(()=> this.state.notices.unshift({id: response.key, type: data.event, author: user.state.currentUser,
-			task: data.task, executor: data.executor, recipient: data.id,  keyWord: data.keyWord}))
+			task: data.task, body: data.body, executor: data.executor, recipient: data.id,  keyWord: data.keyWord}))
 	}
 	getNotices() {
 		this.state.notices = []
