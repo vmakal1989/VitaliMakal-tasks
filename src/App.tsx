@@ -12,7 +12,7 @@ import Preloader from "src/components/common/Preloader"
 import Aside from "./components/Aside"
 import TaskPage from "./components/TaskPage"
 import { withRouter } from "react-router-dom"
-
+import UserPage from "./components/UserPage"
 const App = observer((): JSX.Element =>  {
 	React.useEffect(()=> {
 		app.initializeApp()
@@ -29,6 +29,7 @@ const App = observer((): JSX.Element =>  {
 					<div className="main">
 						<Route exact path="/" component={Main}/>
 						<Route path="/tasks/:id" component={TaskPage}/>
+						<Route path="/users/:id" component={UserPage}/>
 					</div>
 					<Aside/>
 				</div>

@@ -15,8 +15,9 @@ class App {
 		runInAction(() => 	this.state.isFetching = true)
 		await firebase.auth().onAuthStateChanged((u) => {
 			if(u) {
-				user.getUserProfile(u.uid)
+				runInAction(()=> this.state.isAuth = true)
 				user.loginUser()
+				user.getUserProfile(u.uid)
 			}
 			runInAction(() => 	this.state.isFetching = false)
 		})

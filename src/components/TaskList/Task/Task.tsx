@@ -6,17 +6,18 @@ import DotsMenu from "src/components/common/DotsMenu"
 import TaskName from "./TaskName"
 import classNames from "classnames"
 import {NavLink} from "react-router-dom"
+import {User} from "src/types/types"
 
 type Props = {
 	text: string
 	statusInfoType: "In progress" | "Pending" | "Completed" | 'Canceled'
 	importanceInfoType: "Minor" | "Critical" | "Normal"
 	taskId: number
-	usersId: Array<string>
+	users: Array<User>
 	haze?: "haze"
 }
 
-const Task: React.FC<Props> = ({text, statusInfoType, importanceInfoType, taskId, usersId, haze}): JSX.Element => {
+const Task: React.FC<Props> = ({text, statusInfoType, importanceInfoType, taskId, users, haze}): JSX.Element => {
 	return (
 		<div className={classNames("task", haze && haze)}>
 			<NavLink to={`/tasks/${taskId}`}>
@@ -24,7 +25,7 @@ const Task: React.FC<Props> = ({text, statusInfoType, importanceInfoType, taskId
 			</NavLink>
 			<StatusInformation type={statusInfoType}/>
 			<ImportanceInfo type={importanceInfoType} />
-			<AvatarGroup usersId={usersId}/>
+			<AvatarGroup users={users}/>
 			<DotsMenu taskId={taskId}/>
 		</div>
 	)

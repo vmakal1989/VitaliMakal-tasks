@@ -1,13 +1,13 @@
 import React from "react"
 import defaultAvatar from "src/assets/images/defaultProfile.png"
-import user from "src/store/user"
+import {User} from "src/types/types"
 
 type Props = {
 	classType: string
-	userId?: string
+	user?: User
 }
 
-const ProfileIcon: React.FC<Props> = ({classType, userId}): JSX.Element => {
+const ProfileIcon: React.FC<Props> = ({classType, user}): JSX.Element => {
 	let userPhotoUrl = defaultAvatar
 	return (
 		<div className={`${classType}__user-avatar`}>

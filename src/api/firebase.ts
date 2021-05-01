@@ -18,7 +18,10 @@ export const firebaseUserAPI = {
 		return firebase.database().ref(`users/${userId}`).once('value')
 	},
 	getUsers() {
-		return firebase.database().ref(`users`).once('value')
+		return firebase.database().ref(`users/`).once('value')
+	},
+	getUser(id: string) {
+		return firebase.database().ref(`users/${id}`).once('value')
 	}
 }
 
@@ -32,10 +35,10 @@ export const firebaseTaskAPI = {
 		updates[`tasks/${id}`] = updateData;
 		return firebase.database().ref().update(updates);
 	},
-	removeTask(id) {
+	removeTask(id: string) {
 		return firebase.database().ref(`tasks/${id}`).remove()
 	},
-	getTask(id) {
+	getTask(id: string) {
 		return firebase.database().ref(`tasks/${id}`).once('value')
 	},
 	getTasks() {

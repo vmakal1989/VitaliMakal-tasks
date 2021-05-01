@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from "mobx"
-import {firebaseUserAPI} from "src/api/firebase"
+import {firebaseTaskAPI, firebaseUserAPI} from "src/api/firebase"
 import app from "src/store/app"
 import notice from "src/store/notice"
 import task from "./task"
@@ -7,7 +7,9 @@ import task from "./task"
 class User {
 	state = {
 		currentUser: null,
-		users: []
+		users: [],
+		user: null,
+		isFetching: false
 	}
 	constructor() {
 		makeAutoObservable(this)
@@ -21,8 +23,8 @@ class User {
 			})
 	}
 	async loginUser() {
-		await this.getUsers()
 		await task.getTasks()
+		await this.getUsers()
 		await notice.getNotices()
 		runInAction(()=> app.state.isAuth = true)
 	}
@@ -39,6 +41,16 @@ class User {
 					if(key !== this.state.currentUser.id)
 						this.state.users.push({id: key, ...response.val()[key]})
 				}
+			})
+	}
+	async getUser(id) {
+		runInAction(()=> this.state.isFetching = true)
+		await firebaseUserAPI.getUser(id)
+			.then(response => {
+				response.val()
+					? this.state.user = {id: response.key, ...response.val()}
+					: this.state.user = "404"
+				runInAction(()=> this.state.isFetching = false)
 			})
 	}
 	async getUserProfile(id) {

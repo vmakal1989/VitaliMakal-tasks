@@ -1,0 +1,25 @@
+@import "src/styles/mixins/font";
+.user-page {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: relative;
+  &__return {
+    position: absolute;
+    top: -10px;
+    left: 30px;
+    width: 45px;
+    text-align: right;
+    cursor: pointer;
+    background: url("src/assets/images/svg/left-arrow.svg") no-repeat left;
+    @include font_options("Montserrat", normal, 12px, 500, 12px, 0, #5787A4);
+    &:hover {
+      opacity: .8;
+    }
+  }
+  &__preloader {
+    width: 100px;
+    height: 100px;
+    margin: 50px auto;
+  }
+}

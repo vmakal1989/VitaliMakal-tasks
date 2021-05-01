@@ -2,40 +2,41 @@ import React, {useState} from 'react'
 import ProfileIcon from "src/components/common/ProfileIcon"
 import classNames from "classnames"
 import {NavLink} from "react-router-dom"
+import {User} from "src/types/types"
 
 type Props = {
-	usersId: Array<string>
+	users: Array<User>
 }
 
-const AvatarGroup: React.FC<Props> = ({usersId}): JSX.Element => {
+const AvatarGroup: React.FC<Props> = ({users}): JSX.Element => {
 	return (
 		<div className="avatars">
 			{
-				usersId.map((userId, index) => {
+				users.map((user, index) => {
 					if(index < 4 ) return (
 						<div key={index} className="avatars__item">
-							<NavLink to={`/users/${userId}`}>
-								<ProfileIcon key={userId}
+							<NavLink to={`/users/${user.id}`}>
+								<ProfileIcon key={user.id}
 											 classType={"task"}
-											 userId={userId}/>
+											 user={user}/>
 							</NavLink>
 						</div>
 					)
 				})
 			}
 			{
-				usersId.length > 4
+				users.length > 4
 					?
 					<div className="avatars__hidden-items">
-						+{usersId.length - 4}
+						+{users.length - 4}
 							<div className={classNames(`avatars__hidden-container`)}>
-								{usersId.map((userId, index) => {
+								{users.map((user, index) => {
 									if(index >= 4 ) return (
 										<div key={index} className="avatars__hidden-item">
-											<NavLink to={`/users/${userId}`}>
-												<ProfileIcon key={userId}
+											<NavLink to={`/users/${user.id}`}>
+												<ProfileIcon key={user.id}
 															 classType={"task"}
-															 userId={userId}/>
+															 user={user}/>
 											</NavLink>
 										</div>
 									)

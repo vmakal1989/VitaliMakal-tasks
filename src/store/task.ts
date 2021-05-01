@@ -69,13 +69,12 @@ class Task {
 					: this.state.task = "404"
 				runInAction(()=> this.state.isFetching = false)
 			})
-
 	}
 	async getTasks() {
 		runInAction(()=> this.state.isFetching = true)
 		await firebaseTaskAPI.getTasks()
 			.then(response => {
-				this.state.tasks = []
+				runInAction(()=> this.state.tasks = [])
 				for(let key in response.val()) {
 					runInAction(()=> this.state.tasks.push({id: key, ...response.val()[key]}))
 				}
