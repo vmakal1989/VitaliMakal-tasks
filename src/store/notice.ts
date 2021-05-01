@@ -36,9 +36,9 @@ class Notice {
 			task: data.task, body: data.body, executor: data.executor, recipient: data.id,  keyWord: data.keyWord}))
 	}
 	getNotices() {
-		this.state.notices = []
 		firebaseNoticeAPI.getNotices()
 			.then(response => {
+				this.state.notices = []
 				for(let key in response.val()) {
 					if(response.val()[key].recipient === user.state.currentUser.id || response.val()[key].recipient === "all") {
 						runInAction(()=> this.state.notices.unshift({id: key, ...response.val()[key]}))

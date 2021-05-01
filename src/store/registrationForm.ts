@@ -26,13 +26,13 @@ class RegistrationForm extends Form {
 					name: "firstName",
 					label: "First Name",
 					placeholder: "Insert First Name",
-					rules: "required|string|min:6"
+					rules: "required|string|min:3"
 				},
 				{
 					name: "lastName",
 					label: "Last Name",
 					placeholder: "Insert Last Name",
-					rules: "required|string|min:6"
+					rules: "required|string|min:3"
 				},
 				{
 					name: "password",

@@ -75,6 +75,7 @@ class Task {
 		runInAction(()=> this.state.isFetching = true)
 		await firebaseTaskAPI.getTasks()
 			.then(response => {
+				this.state.tasks = []
 				for(let key in response.val()) {
 					runInAction(()=> this.state.tasks.push({id: key, ...response.val()[key]}))
 				}
