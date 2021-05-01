@@ -8,21 +8,14 @@ import LoginForm from "src/components/Forms/LoginForm"
 import { Route, Redirect } from "react-router"
 import app from "src/store/app"
 import { observer} from "mobx-react"
-import user from "src/store/user"
-import task from "./store/task"
 import Preloader from "src/components/common/Preloader"
 import Aside from "./components/Aside"
-import notice from "./store/notice"
 import TaskPage from "./components/TaskPage"
 import { withRouter } from "react-router-dom"
 
 const App = observer((): JSX.Element =>  {
 	React.useEffect(()=> {
-		app.initializeApp().then(()=>{
-			user.getUsers()
-			task.getTasks()
-			notice.getNotices()
-		})
+		app.initializeApp()
 	},[])
 
 	if(app.state.isFetching) return <Preloader style={"app__preloader"}/>
