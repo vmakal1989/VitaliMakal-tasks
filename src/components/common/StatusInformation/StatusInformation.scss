@@ -1,0 +1,25 @@
+@import "src/styles/mixins/font";
+
+.status-information {
+  width: 77px;
+  border-radius: 8.5px;
+  text-align: center;
+  margin: 0 40px;
+  @include font_options("SF UI Text", normal, 11px, normal, 18px, 0);
+  &_orange {
+    background: rgba(242, 153, 74, 0.2);
+    color: #F2994A;
+  }
+  &_blue {
+    background: rgba(86, 204, 242, 0.2);
+    color: #56CCF2;
+  }
+  &_green {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27AE60;
+  }
+  &_red {
+    background: rgba(235, 87, 87, 0.2);
+    color: #EB5757
+  }
+}

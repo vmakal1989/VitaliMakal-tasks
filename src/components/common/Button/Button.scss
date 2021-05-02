@@ -1,0 +1,9 @@
+@import "src/styles/mixins/font";
+.btn {
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    transform: scale(.98);
+  }
+}

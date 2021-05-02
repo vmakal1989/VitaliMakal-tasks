@@ -1,0 +1,75 @@
+@import "src/styles/mixins/font";
+.dots-menu {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #DCD9D9;
+  cursor: pointer;
+  text-align: center;
+  z-index: 3;
+  @include font_options("Montserrat", normal, 12px, normal, 14px, 0, #000000);
+  &:hover .dot:before {
+    right: -5px;
+  }
+  &:hover .dot:after {
+    left: -5px;
+  }
+  .dot, .dot:before, .dot:after {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
+    content: "";
+  }
+  .dot {
+    top: 50%;
+    left: 50%;
+  }
+  .dot:before {
+    right: 5px;
+    transition: right .3s ease-out;
+  }
+  .dot:after {
+    left: 5px;
+    transition: left .3s ease-out;
+  }
+  &__items, &__sub-items {
+    position: absolute;
+    right: 25px;
+    top: -20%;
+    background: #ffffff;
+    box-shadow: 0 0 3px #000000;
+    border-radius: 2px;
+    display: none;
+    z-index: 2;
+  }
+  &__sub-items {
+    right: 103%;
+    top: 0;
+  }
+  &__items::after, &__sub-items::after {
+    content: '';
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    right: -10px;
+    top: 0;
+  }
+  &__item, &__sub-item {
+    padding: 5px;
+    &:hover {
+      background: #eeeeee;
+    }
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+  &:hover &__items {
+    display: block;
+  }
+  &__item:hover &__sub-items {
+    display: block;
+  }
+}

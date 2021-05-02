@@ -1,0 +1,9 @@
+.registration-form {
+    width: 400px;
+    padding: 20px;
+    margin: 100px auto;
+    border-radius: 10px;
+    &__item:not(:nth-child(1)){
+        width: 49%;
+    }
+}

@@ -1,0 +1,28 @@
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.header__user-avatar {
+  width: 32px;
+  height: 32px;
+  border: double 2px transparent;
+  border-radius:50%;
+  background-image: linear-gradient(white, white),
+    radial-gradient(circle at top, rgba(136, 76, 178, 1),rgba(253, 100, 142, 1));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .header__user-image {
+    position: relative;
+    background: url("src/assets/images/defaultProfile.png");
+    width: 26px;
+    height: 26px;
+  }
+}
+.task__user-avatar {
+  width: 100%;
+  height: 100%;
+}

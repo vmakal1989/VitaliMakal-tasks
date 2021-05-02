@@ -1,0 +1,25 @@
+@import "src/styles/mixins/font";
+.task-form {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -40%;
+  width: 80%;
+  border-radius: 5px;
+  z-index: 5;
+  box-shadow: 0 4px 20px #8CA4D8;
+  padding: 20px;
+  &__title {
+    padding: 10px 0;
+    @include font-options("Poppins", normal, 36px, 700, 54px, 0, #1D262C);
+  }
+  &__item {
+    width: 100%;
+    &:nth-child(3), &:nth-child(4) {
+      width: 25%;
+    }
+    &:nth-child(5) {
+      width: 40%;
+    }
+  }
+}

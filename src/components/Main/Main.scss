@@ -1,0 +1,54 @@
+@import "src/styles/mixins/font";
+.main {
+  width: 920px;
+  min-height: 470px;
+  padding: 20px 15px;
+  position: relative;
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 0;
+  }
+  &__title {
+    @include font_options('Poppins', normal, 36px, 700, 54px, 0, #1D262C);
+    margin-right: 30px;
+  }
+  &__list {
+    padding: 20px 10px;
+  }
+  &__list-title {
+    @include  font_options('Poppins', normal, 18px, 400, 27px, 0, #1D262C);
+    padding-right: 87px;
+    display: inline-block;
+  }
+  .completed-img {
+    background: url("src/assets/images/svg/inactive.svg") no-repeat right;
+  }
+  &__btn {
+    width: 139px;
+    height: 34px;
+    background: #884CB2;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    @include font_options('Poppins', normal, 12px, normal, 9px, 0, #fff);
+    span {
+      display: flex;
+      align-items: center;
+      place-content: center;
+      &::before {
+        content: url("src/assets/images/svg/plus.svg");
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+      }
+    }
+  }
+  &__preloader {
+    width: 100px;
+    height: 100px;
+    margin: 50px auto;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../styles/mixins/font";
+.btn-see-moore {
+  display: block;
+  margin: 10px auto;
+  border: none;
+  background: #ffffff;
+  @include font_options('Montserrat', normal, 12px, 400, 14px, 0, #80deea);
+  &:hover {
+    opacity: .8;
+  }
+}

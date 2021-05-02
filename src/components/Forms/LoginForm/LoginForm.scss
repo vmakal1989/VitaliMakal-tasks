@@ -1,0 +1,9 @@
+.login-form {
+    width: 320px;
+    padding: 20px;
+    margin: 100px auto;
+    border-radius: 10px;
+    &__btn-success, &__btn-cancel {
+        margin: 0 5px !important;
+    }
+}
