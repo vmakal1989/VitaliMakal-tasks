@@ -5,6 +5,8 @@ import notice from "src/store/notice"
 import {Task, User} from "src/types/types"
 import classNames from "classnames";
 import { styles } from "src/helpers/withStyles/colorOptions"
+import userStore from "../../../store/user";
+import {observer} from "mobx-react";
 
 type Props = {
 	author: User
@@ -12,12 +14,12 @@ type Props = {
 	keyWord: Array<string>
 }
 
-export const UpdateTask: React.FC<Props> = ({author, task, keyWord}): JSX.Element => {
+export const UpdateTask: React.FC<Props> = observer(({author, task, keyWord}): JSX.Element => {
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
 				<NavLink to={`/users/${author.id}`}>
-					<ProfileIcon classType={"notice"} />
+					<ProfileIcon classType={"notice"} src={userStore.getUserAvatar(author.id)}/>
 				</NavLink>
 			</div>
 			<div>
@@ -36,4 +38,4 @@ export const UpdateTask: React.FC<Props> = ({author, task, keyWord}): JSX.Elemen
 			</div>
 		</div>
 	)
-}
+})

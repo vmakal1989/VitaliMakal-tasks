@@ -3,18 +3,20 @@ import ProfileIcon from "src/components/common/ProfileIcon"
 import {NavLink} from "react-router-dom"
 import notice from "src/store/notice"
 import {Task, User} from "src/types/types"
+import userStore from "../../../store/user";
+import {observer} from "mobx-react";
 
 type Props = {
 	author: User
 	task: Task
 }
 
-export const RemoveTask: React.FC<Props> = ({author, task}): JSX.Element => {
+export const RemoveTask: React.FC<Props> = observer(({author, task}): JSX.Element => {
 	return (
 		<div className="notice__item nowrap">
 			<div className="notice__avatar">
 				<NavLink to={`/users/${author.id}`}>
-					<ProfileIcon classType={"notice"} />
+					<ProfileIcon classType={"notice"} src={userStore.getUserAvatar(author.id)}/>
 				</NavLink>
 			</div>
 			<div>
@@ -32,4 +34,4 @@ export const RemoveTask: React.FC<Props> = ({author, task}): JSX.Element => {
 			</div>
 		</div>
 	)
-}
+})

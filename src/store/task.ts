@@ -31,7 +31,7 @@ class Task {
 		let {name, description, status, importance, executor} = taskData
 		await firebaseUserAPI.getUserProfile(executor)
 			.then(response => {
-				let users = [executor ? {executor, ...response.val()} : user.state.currentUser, user.state.currentUser]
+				let users = [executor ? {id: executor, ...response.val()} : user.state.currentUser, user.state.currentUser]
 				firebaseTaskAPI.addTask(name, description, status, importance, users)
 					.then(response => {
 						runInAction(()=> this.state.tasks.push({id: response.key,name, description, status, importance, users}))

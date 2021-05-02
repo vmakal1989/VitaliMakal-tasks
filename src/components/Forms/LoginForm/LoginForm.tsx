@@ -5,6 +5,7 @@ import SimpleInput from "src/components/Forms/Inputs/SimpleInput"
 import { observer } from "mobx-react"
 import { NavLink, Redirect } from "react-router-dom"
 import app from "src/store/app"
+// @ts-ignore
 import spinner from "src/assets/images/svg/spinner.svg"
 
 type Props = {

@@ -13,6 +13,7 @@ import Aside from "./components/Aside"
 import TaskPage from "./components/TaskPage"
 import { withRouter } from "react-router-dom"
 import UserPage from "./components/UserPage"
+
 const App = observer((): JSX.Element =>  {
 	React.useEffect(()=> {
 		app.initializeApp()

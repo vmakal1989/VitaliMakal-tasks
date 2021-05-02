@@ -57,7 +57,7 @@ class RegistrationForm extends Form {
 				let {email, firstName, lastName, password} = form.values()
 				await firebaseUserAPI.createAccount(email, password)
 					.then(data => {
-						user.createUser(data.user.uid,email, firstName, lastName )
+						user.createUser(data.user.uid,email, firstName, lastName)
 						form.clear()
 						runInAction(()=> app.state.formIsFetching = false)
 					})

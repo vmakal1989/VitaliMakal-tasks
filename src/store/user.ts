@@ -1,5 +1,5 @@
 import {makeAutoObservable, runInAction} from "mobx"
-import {firebaseTaskAPI, firebaseUserAPI} from "src/api/firebase"
+import {firebaseUserAPI} from "src/api/firebase"
 import app from "src/store/app"
 import notice from "src/store/notice"
 import task from "./task"
@@ -17,7 +17,7 @@ class User {
 	async createUser(id, email, firstName, lastName) {
 		await firebaseUserAPI.setUserProfile(id, email, firstName, lastName)
 			.then(() => {
-				this.state.currentUser = {id, firstName, lastName, email}
+				runInAction(()=> this.state.currentUser = {id, firstName, lastName, email, avatar: null})
 				this.loginUser()
 				notice.addNotice({event:"UpdateProfile", id})
 			})
@@ -35,11 +35,11 @@ class User {
 	async getUsers() {
 		await firebaseUserAPI.getUsers()
 			.then(response => {
-				this.state.users = []
-				this.state.users.push(this.state.currentUser)
+				runInAction(()=> this.state.users = [])
+				runInAction(()=> this.state.users.push(this.state.currentUser))
 				for(let key in response.val()) {
 					if(key !== this.state.currentUser.id)
-						this.state.users.push({id: key, ...response.val()[key]})
+						runInAction(()=> this.state.users.push({id: key, ...response.val()[key]}))
 				}
 			})
 	}
@@ -56,9 +56,21 @@ class User {
 	async getUserProfile(id) {
 		await firebaseUserAPI.getUserProfile(id)
 			.then(response => {
-				let {email, firstName, lastName} = response.val()
-				this.state.currentUser = {id, firstName, lastName, email}
+				let {email, firstName, lastName, avatar} = response.val()
+				runInAction(()=> this.state.currentUser = {id, firstName, lastName, email, avatar})
 			})
+	}
+	async setAvatar(image, userId) {
+		await firebaseUserAPI.setAvatar(image, userId)
+			.then((imageURL) => {
+				imageURL = imageURL.toString()
+				firebaseUserAPI.updateUserProfile(this.state.currentUser, imageURL)
+				runInAction(()=> this.state.currentUser.avatar = imageURL)
+			})
+	}
+	getUserAvatar(id) {
+		let user = this.state.users.filter(user => user.id === id)
+		return user.length != 0 ? user[0].avatar : ""
 	}
 }
 

@@ -12,16 +12,26 @@ export const firebaseUserAPI = {
 		return firebase.auth().signOut()
 	},
 	setUserProfile(userId: string, email: string, firstName: string, lastName: string) {
-		return firebase.database().ref(`users/${userId}`).set({email, firstName, lastName})
+		return firebase.database().ref(`users/${userId}`).set({email, firstName, lastName, avatar: null})
 	},
 	getUserProfile(userId: string) {
 		return firebase.database().ref(`users/${userId}`).once('value')
+	},
+	updateUserProfile({id, email, firstName, lastName}, avatar: string) {
+		let updateData = {email, firstName, lastName, avatar}
+		let updates = {};
+		updates[`users/${id}`] = updateData;
+		return firebase.database().ref().update(updates);
 	},
 	getUsers() {
 		return firebase.database().ref(`users/`).once('value')
 	},
 	getUser(id: string) {
 		return firebase.database().ref(`users/${id}`).once('value')
+	},
+	setAvatar(image: File, id: string) {
+		return firebase.storage().ref(`avatars/${id}`).put(image)
+			.then(()=> firebase.storage().ref(`avatars/${id}`).getDownloadURL())
 	}
 }
 

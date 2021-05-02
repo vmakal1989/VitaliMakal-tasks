@@ -1,14 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import ProfileIcon from "src/components/common/ProfileIcon"
 import classNames from "classnames"
 import {NavLink} from "react-router-dom"
 import {User} from "src/types/types"
+import userStore from "src/store/user"
+import {observer} from "mobx-react";
 
 type Props = {
 	users: Array<User>
 }
 
-const AvatarGroup: React.FC<Props> = ({users}): JSX.Element => {
+const AvatarGroup: React.FC<Props> = observer(({users}): JSX.Element => {
 	return (
 		<div className="avatars">
 			{
@@ -18,7 +20,7 @@ const AvatarGroup: React.FC<Props> = ({users}): JSX.Element => {
 							<NavLink to={`/users/${user.id}`}>
 								<ProfileIcon key={user.id}
 											 classType={"task"}
-											 user={user}/>
+											 src={userStore.getUserAvatar(user.id)}/>
 							</NavLink>
 						</div>
 					)
@@ -36,7 +38,7 @@ const AvatarGroup: React.FC<Props> = ({users}): JSX.Element => {
 											<NavLink to={`/users/${user.id}`}>
 												<ProfileIcon key={user.id}
 															 classType={"task"}
-															 user={user}/>
+															 src={userStore.getUserAvatar(user.id)}/>
 											</NavLink>
 										</div>
 									)
@@ -48,6 +50,6 @@ const AvatarGroup: React.FC<Props> = ({users}): JSX.Element => {
 			}
 		</div>
 	)
-}
+})
 
 export default AvatarGroup
