@@ -19,6 +19,7 @@ class Task {
 				label:"Remove"
 			}
 		],
+		searchValue: '',
 		task: null,
 		tasks: [],
 		renderTaskForm: false,
@@ -84,12 +85,29 @@ class Task {
 	renderTasks(sections) {
 		switch (sections) {
 			case "On hold":
-				return this.state.tasks.filter((el) => el.status === 'Pending' || el.status === "In progress")
+				return this.state.searchValue ?
+					 this.state.tasks.filter(task => {
+						let arrWords = task.name.split(" ")
+						return arrWords.filter(word => word.includes(this.state.searchValue)
+							|| word.toLowerCase().includes(this.state.searchValue)).length  !== 0
+					}).filter((el) => el.status === 'Pending' || el.status === "In progress")
+					:
+					 this.state.tasks.filter((el) => el.status === 'Pending' || el.status === "In progress")
 			case "Completed":
-				return this.state.tasks.filter((el) => el.status === 'Canceled' || el.status === "Completed")
+				return this.state.searchValue ?
+					this.state.tasks.filter(task => {
+						let arrWords = task.name.split(" ")
+						return arrWords.filter(word => word.includes(this.state.searchValue)
+							|| word.toLowerCase().includes(this.state.searchValue)).length  !== 0
+					}).filter((el) => el.status === 'Canceled' || el.status === "Completed")
+					:
+					this.state.tasks.filter((el) => el.status === 'Canceled' || el.status === "Completed")
 			default:
 				return this.state.tasks
 		}
+	}
+	hotSearch(val) {
+		this.state.searchValue = val.trim()
 	}
 }
 
