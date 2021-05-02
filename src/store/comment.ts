@@ -1,7 +1,8 @@
 import {makeAutoObservable, runInAction} from "mobx"
-import {firebaseCommentAPI} from "src/api/firebase"
+import {firebaseCommentAPI, firebaseTaskAPI} from "src/api/firebase"
 import user from "./user"
 import notice from "./notice"
+import taskStore from "./task"
 
 class Comment {
 	state = {
@@ -16,6 +17,10 @@ class Comment {
 				.then(response => {
 					runInAction(()=> this.state.comments.unshift({id: response.key, ...comment}))
 					notice.addNotice({event: "LeaveComment", body: value, task})
+					if(task.users.filter(u => u.id === user.state.currentUser.id).length === 0 ) {
+						firebaseTaskAPI.editTask(task.id, task.name, task.description, task.status, task.importance, [...task.users, user.state.currentUser])
+						taskStore.state.tasks.map(t => t.id === task.id ? t.users = [...t.users, user.state.currentUser] : t)
+					}
 				})
 
 	}

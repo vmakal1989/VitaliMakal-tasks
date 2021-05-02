@@ -54,7 +54,7 @@ const TaskPage: React.FC<RouteComponentProps<PathParamsType>> = observer(({match
 								Author: &nbsp;
 								<span className="bold task-page__user-name">
                                     <NavLink to={`/users/${task.state.task.users[1].id}`}>
-                                        {`${task.state.task.users[1].firstName} ${task.state.task.users[1].firstName}`}
+                                        {`${task.state.task.users[1].firstName} ${task.state.task.users[1].lastName}`}
                                     </NavLink>
                                 </span>
 							</div>
@@ -62,7 +62,7 @@ const TaskPage: React.FC<RouteComponentProps<PathParamsType>> = observer(({match
 								Execute: &nbsp;
 								<span className="bold task-page__user-name">
                                     <NavLink to={`/users/${task.state.task.users[0].id}`}>
-                                        {`${task.state.task.users[0].firstName} ${task.state.task.users[0].firstName}`}
+                                        {`${task.state.task.users[0].firstName} ${task.state.task.users[0].lastName}`}
                                     </NavLink>
                                 </span>
 							</div>
