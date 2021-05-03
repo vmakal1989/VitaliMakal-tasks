@@ -73,7 +73,7 @@ const config: webpack.Configuration = {
 							{
 								loader: 'file-loader',
 								options: {
-									name: 'src/style/fonts/**/[name].[ext]'
+									name: 'src/style/fonts/[name].[ext]'
 								}
 							}
 						]
